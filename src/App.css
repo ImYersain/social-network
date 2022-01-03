@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+* {
+  font-family: 'roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app-wrapper {
+  display: grid;
+  width: 1200px;
+  margin: 0 auto;
+  grid-template-areas:
+    "h h"
+    "n c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px
+}
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: white;
+}
