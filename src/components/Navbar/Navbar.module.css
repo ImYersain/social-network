@@ -6,9 +6,6 @@
 .nav .item {
   color: white;
 }
-.nav a{
-  text-decoration: none;
-}
 
 .nav .active {
   color: black;
