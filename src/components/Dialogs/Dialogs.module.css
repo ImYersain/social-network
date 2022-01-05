@@ -1,0 +1,11 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 20px;
+}
+.dialogs_item .active{
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
