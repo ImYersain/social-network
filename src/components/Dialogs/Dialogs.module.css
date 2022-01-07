@@ -3,9 +3,19 @@
     grid-template-columns: 2fr 10fr;
     padding: 20px;
 }
-.dialogs_item .active{
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
+
+.dialogsItems a{
     text-decoration: none;
+    color: blue;
+}
+.dialogsItems .active a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.messages {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
 }

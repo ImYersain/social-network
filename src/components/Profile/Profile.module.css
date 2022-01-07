@@ -4,3 +4,6 @@
 .content .item {
     color: black;
 } */
+.content img{
+    border-radius: 5px;
+}
