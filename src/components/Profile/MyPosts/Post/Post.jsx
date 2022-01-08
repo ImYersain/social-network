@@ -5,11 +5,12 @@ import s from './Post.module.css';
 const Post = (props) => {
     return (
             <div className={s.item}>
-                <img src='https://whatsism.com/uploads/posts/2018-07/1530546770_rmk_vdjbx10.jpg'></img>
+                <img src="https://banner2.cleanpng.com/20180904/vji/kisspng-avatar-image-computer-icons-likengo-usertesting-index-5b8ec1242fdcf5.6000571015360822121961.jpg"></img>
                 {props.message}
                 <div>
                     {props.likes}
-                    <span>like</span>
+                    <span> / </span>
+                    <span>Like</span>
                 </div>
             </div>
     )

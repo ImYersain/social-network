@@ -1,0 +1,11 @@
+img {
+    width: 100%;
+}
+.descriptionBlock {
+    padding: 10px;
+    text-align: center;
+    margin: 30px auto;
+}
+.descriptionBlock img {
+    width: 199px; 
+ }

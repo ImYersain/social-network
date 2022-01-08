@@ -1,0 +1,19 @@
+.postsBlock {
+    padding: 10px;
+    text-align: center;
+}
+.posts {
+    margin: 10px auto;
+    padding: 10px;
+    width: 350px;
+}
+.item textarea {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+}
+.item button {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+}
