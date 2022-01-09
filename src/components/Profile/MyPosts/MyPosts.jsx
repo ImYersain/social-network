@@ -4,6 +4,14 @@ import Post from './Post/Post';
 import s from './MyPosts.module.css';
 
 const MyPosts = (props) => {
+    let posts = [
+        {message: 'Hi, how are you?', id:'1', likes: '1'}, 
+        {message: 'Somebody does read Martin Eden?', id:'2', likes: '7'},
+        {message: 'Yes, really nice book', id:'3', likes: '18'}
+    ];
+
+    let postsElements = posts.map(post => <Post message={post.message} likes={post.likes}/> ); 
+
     return (
             <div>
                 <div className={s.postsBlock}>
@@ -14,11 +22,7 @@ const MyPosts = (props) => {
                 </div>
                 </div>
                 <div className={s.posts}>
-                    <Post   message='Hi, how are you?'/>
-                    <Post   message='Somebody does read Games of thrones?'
-                            likes=' 20 ' />
-                    <Post   message='Yes, really nice boook'
-                            likes=' 10 '/>
+                    {postsElements}
                 </div>
             </div>
     )

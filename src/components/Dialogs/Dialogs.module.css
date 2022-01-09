@@ -6,13 +6,14 @@
 
 .dialogsItems a{
     text-decoration: none;
-    color: blue;
+    color: black;
 }
-.dialogsItems .active a{
+.dialogsItems a.active{
     text-decoration: none;
     color: black;
     font-weight: bold;
 }
+
 
 .messages {
     background-color: white;
