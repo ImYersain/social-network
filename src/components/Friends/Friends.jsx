@@ -2,10 +2,13 @@ import React from 'react';
 
 
 
+
+
+
 const News = (props) => {
   return (
     <div className='app-wrapper'>
-      news
+      friends
     </div>
   );
 }

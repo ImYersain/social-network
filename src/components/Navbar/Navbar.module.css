@@ -14,3 +14,19 @@
   font-weight: bold;
   text-decoration: none;
 }
+
+
+
+
+.itemFriends {
+  margin-top: 250px;
+}
+.itemFriend {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  cursor: pointer;
+}
+.itemFriend img{
+  width: 50px;
+}
