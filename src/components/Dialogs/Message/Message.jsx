@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './../Dialogs.module.css';
+import s from './../Message/Message.module.css';
 
 
 
@@ -8,8 +8,11 @@ import s from './../Dialogs.module.css';
 
 const Message = (props) => {
   return (
-    <div className={s.message}>
-          {props.message}
+    <div>
+      {props.message}
+    <div className={s.friendsMessage}>
+        {props.message}
+    </div>
     </div>
   )
 }

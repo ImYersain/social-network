@@ -8,8 +8,8 @@ import s from './Dialogs.module.css';
 
 const Dialogs = (props) => {
 
-  let dialogsElements = props.state.dialogs.map(dialog =>  <DialogItem name={dialog.name} id={dialog.id} />)
-  let messagesElements = props.state.messages.map(message => <Message message={message.message}/>)
+  let dialogsElements = props.state.dialogs.map(dialog =>  <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
+  let messagesElements = props.state.messages.map(message => <Message message={message.message} />)
 
   return (
 
@@ -19,6 +19,10 @@ const Dialogs = (props) => {
       </div>
       <div className={s.messages}>
         {messagesElements}
+        <div className={s.item}>
+              <div><textarea></textarea></div>
+              <div><button>Send</button></div>
+        </div>
       </div>
     </div>
 

@@ -5,7 +5,7 @@ import s from './Post.module.css';
 const Post = (props) => {
     return (
             <div className={s.item}>
-                <img src="https://banner2.cleanpng.com/20180904/vji/kisspng-avatar-image-computer-icons-likengo-usertesting-index-5b8ec1242fdcf5.6000571015360822121961.jpg"></img>
+                <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/hipster_beard_male_man-512.png"></img>
                 {props.message}
                 <div>
                     {props.likes}

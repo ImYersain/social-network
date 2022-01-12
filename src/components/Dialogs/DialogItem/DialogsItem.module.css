@@ -1,0 +1,21 @@
+.dialogItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;   
+}
+.dialogItem img {
+    width: 50px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.dialogItem a{
+    text-decoration: none;
+    color: black;
+}
+
+.dialogItem a.active{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}

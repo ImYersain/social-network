@@ -10,7 +10,7 @@ const ProfileInfo = () => {
             </div>
             <div className={s.descriptionBlock}>
                 <div>
-                    <img src="https://banner2.cleanpng.com/20180904/vji/kisspng-avatar-image-computer-icons-likengo-usertesting-index-5b8ec1242fdcf5.6000571015360822121961.jpg" alt="#"/>
+                    <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/hipster_beard_male_man-512.png" alt="#"/>
                 </div>
                 <div>
                     <h3>Yersain Aldabayev</h3> 
