@@ -3,6 +3,7 @@
   background-color: #edf2f6;
   padding: 20px;
   border-radius: 5px;
+  min-width: 160px;
 }
 .item {
   color: black;
@@ -20,13 +21,24 @@
 
 .itemFriends {
   margin-top: 250px;
+  color: black;
+  text-decoration: none;
+}
+.itemFriends .active {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
 }
 .itemFriend {
-  margin-top: 10px;
+  margin: 17px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   cursor: pointer;
 }
 .itemFriend img{
   width: 50px;
+}
+.itemFriend div{
+  margin-bottom: 10px;
 }
