@@ -47,7 +47,7 @@ export let addPost = (newMessage) => {
     }
     state.profilePage.posts.push(newPost)
 
-    renderEntireTree();
+    renderEntireTree(state);
 }
 
 
