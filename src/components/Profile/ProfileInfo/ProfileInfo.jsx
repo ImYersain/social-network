@@ -16,7 +16,7 @@ const ProfileInfo = () => {
                     <h3>Yersain Aldabayev</h3> 
                 </div>
                 <p>country: Kazakhstan <br/>
-                age: 24 <br/></p>
+                age: 23 <br/></p>
             </div>
         </div>
     )
