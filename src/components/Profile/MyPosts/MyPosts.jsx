@@ -7,10 +7,14 @@ const MyPosts = (props) => {
     let newPostElement = new createRef();
 
     let onPostBtn = () => {
-        let text = newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value = '';  
+        props.addPost();  
     }
+
+    let onChangeText = () => {
+        let text = newPostElement.current.value;
+        props.updatePostText(text);
+    }
+
     
     let postsElements = props.posts.map(post => <Post message={post.message} likes={post.likes}/> ); 
 
@@ -19,7 +23,12 @@ const MyPosts = (props) => {
                 <div className={s.postsBlock}>
                 <h3>New Post</h3>
                 <div className={s.item}>
-                    <div><textarea ref={newPostElement} placeholder="What's on your mind?"></textarea></div>
+                    <div>
+                        <textarea   ref={newPostElement}  
+                                    value ={props.newPostText}
+                                    placeholder="What's on your mind?"
+                                    onChange={onChangeText} />
+                    </div>
                     <div><button onClick={onPostBtn}> Add post </button></div>
                 </div>
                 </div>
