@@ -27,9 +27,12 @@ const MyPosts = (props) => {
                         <textarea   ref={newPostElement}  
                                     value ={props.newPostText}
                                     placeholder="What's on your mind?"
-                                    onChange={onChangeText} />
+                                    onChange={onChangeText}
+                        />
                     </div>
-                    <div><button onClick={onPostBtn}> Add post </button></div>
+                    <div>
+                        <button onClick={onPostBtn}> Add post </button>
+                    </div>
                 </div>
                 </div>
                 <div className={s.posts}>

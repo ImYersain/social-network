@@ -8,7 +8,7 @@ let state = {
             {id:'2', message: 'Somebody does read Martin Eden?', likes: '7'},
             {id:'3', message: 'Yes, really nice book', likes: '18'}
           ],
-        newPostText: 'itkamasutra'
+        newPostText: ''
     },
     messagesPage: {
         dialogs: [
@@ -26,7 +26,8 @@ let state = {
             {message: 'Nice, what about you? :)' , id:'3'},
             {message: 'Not bad', id:'4'},
             {message: 'Okay, bye', id:'5'}
-        ]
+        ],
+        newMessageText: ''
     },
     sidebar: {
         friends: [
@@ -59,6 +60,20 @@ export let updatePostText = (newText) => {
     renderEntireTree(state);
 }
 
+export let sendMessage = () => {
+    let newMessage = {
+        id: '6',
+        message: state.messagesPage.newMessageText,
+    }
+    state.messagesPage.messages.push(newMessage);
+    state.messagesPage.newMessageText = '';
+    renderEntireTree(state);
+}
+
+export let updateMessageText = (newText) => {
+    state.messagesPage.newMessageText = newText;
+    renderEntireTree(state);
+}
 
 
 
