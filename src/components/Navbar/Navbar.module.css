@@ -8,6 +8,7 @@
 .item {
   color: black;
   text-decoration: none;
+  margin-bottom: 10px;
 }
 .item a.active {
   color: black;
@@ -41,4 +42,19 @@
 }
 .itemFriend div{
   margin-bottom: 10px;
+}
+
+
+
+.itemSettings {
+  margin-top: 40px;
+  color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+.itemSettings .active {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
 }

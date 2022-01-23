@@ -1,8 +1,3 @@
-let renderEntireTree = () => {
-    console.log('state changed');
-};
-
-
 let state = {
     profilePage: {
         posts: [
@@ -43,6 +38,15 @@ let state = {
     }
 }
 
+let renderEntireTree = () => {
+    console.log('state changed');
+};
+
+
+
+
+
+
 window.state = state;
 
 
@@ -68,7 +72,7 @@ export const sendMessage = () => {
         message: state.messagesPage.newMessageText,
     }
     state.messagesPage.messages.push(newMessage);
-    state.messagesPage.newMessageText = '';
+    updatePostText('');
     renderEntireTree(state);
 }
 

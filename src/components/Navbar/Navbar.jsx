@@ -8,7 +8,7 @@ const Navbar = (props) => {
     let friends = props.state.friends.map(friend => {
         return (
             <div>
-                <img src={friend.avatar} />
+                <img src={friend.avatar} alt="avatar"/>
                 <div>{friend.name}</div>
             </div>
         )
@@ -27,7 +27,7 @@ const Navbar = (props) => {
             <div className={s.item}>
                 <NavLink to='music' className = {navData => navData.isActive ? s.active : s.item}>Music</NavLink>
             </div>
-            <div className={s.item}>
+            <div className={s.itemSettings}>
             <NavLink to='settings' className = {navData => navData.isActive ? s.active : s.item}>Settings</NavLink>
             </div>
             <div className={s.itemFriends}>
