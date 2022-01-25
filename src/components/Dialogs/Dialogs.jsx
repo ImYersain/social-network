@@ -11,17 +11,23 @@ const Dialogs = (props) => {
   let dialogsElements = props.state.dialogs.map(dialog =>  <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
   let messagesElements = props.state.messages.map(message => <Message message={message.message} />)
   let newMessageElement = new createRef();
+
+
   
   let onChangeText = () => {
     let text = newMessageElement.current.value;
-    props.updateMessageText(text);
+    props.dispatch({
+        type: 'UPDATE-MESSAGE-TEXT',
+        newText: text
+    })
   }
   
+
   let onPostBtn = () => {
-    // let newMessageText = newMessageElement.current.value;
-    // props.sendMessage(newMessageText);  
+    props.dispatch({
+      type: 'SEND-MESSAGE'
+    })
     newMessageElement.current.value = '';
-    props.sendMessage();
 }
 
   return (

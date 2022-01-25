@@ -40,16 +40,22 @@ let store = {
             ]
         }
     },
+    _callSubscriber() {
+        console.log('state changed');
+    },
+
 
     getState(){
         return this._state;
     },
-
-
-    _callSubscriber() {
-        console.log('state changed');
+    subscribe(observer) {
+        this._callSubscriber = observer;
     },
-    addPost() {
+    
+
+
+    
+    _addPost() {
         let newPost = {
             id:'4',
             message: this._state.profilePage.newPostText,
@@ -62,26 +68,35 @@ let store = {
         }
        
     },
-    updatePostText(newText){
+    _updatePostText(newText){
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
-    sendMessage(){
+    _sendMessage(){
         let newMessage = {
             id: '6',
             message: this._state.messagesPage.newMessageText,
         }
         this._state.messagesPage.messages.push(newMessage);
-        this._state.messagesPage.newMessageText = '';
+        // this._state.messagesPage.newMessageText = '';
         this._callSubscriber(this._state);
     },
-    updateMessageText(newText){
+    _updateMessageText(newText){
         this._state.messagesPage.newMessageText = newText;
         this._callSubscriber(this._state);
     },
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    }
+    
+    dispatch (action) {
+        if(action.type === 'ADD-POST'){
+            this._addPost();
+        } else if(action.type === 'UPDATE-POST-TEXT'){
+            this._updatePostText(action.newText);   
+        } else if(action.type === 'SEND-MESSAGE'){
+            this._sendMessage();
+        } else if(action.type === 'UPDATE-MESSAGE-TEXT'){
+            this._updateMessageText(action.newText);
+        }
+    },
 
 }
 
