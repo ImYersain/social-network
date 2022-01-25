@@ -8,7 +8,7 @@
 .item {
   color: black;
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .item a.active {
   color: black;

@@ -20,7 +20,7 @@ const Dialogs = (props) => {
   let onPostBtn = () => {
     // let newMessageText = newMessageElement.current.value;
     // props.sendMessage(newMessageText);  
-    // newMessageElement.current.value = '';
+    newMessageElement.current.value = '';
     props.sendMessage();
 }
 
@@ -40,7 +40,7 @@ const Dialogs = (props) => {
                 />
               </div>
               <div>
-                <button onClick={onPostBtn}>Send</button>
+                <button onClick={onPostBtn}> Send </button>
               </div>
         </div>
       </div>
