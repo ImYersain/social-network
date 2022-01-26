@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
+
+
 
 let store = {
 
@@ -87,18 +93,31 @@ let store = {
     },
     
     dispatch (action) {
-        if(action.type === 'ADD-POST'){
+        if(action.type === ADD_POST){
             this._addPost();
-        } else if(action.type === 'UPDATE-POST-TEXT'){
+        } else if(action.type === UPDATE_POST_TEXT){
             this._updatePostText(action.newText);   
-        } else if(action.type === 'SEND-MESSAGE'){
+        } else if(action.type === SEND_MESSAGE){
             this._sendMessage();
-        } else if(action.type === 'UPDATE-MESSAGE-TEXT'){
+        } else if(action.type === UPDATE_MESSAGE_TEXT){
             this._updateMessageText(action.newText);
         }
     },
 
 }
+
+
+
+
+
+export const onPostBtnActionCreater = () => ({type: ADD_POST});
+export const onChangeTextActionCreater = (text) => 
+                        ({type: UPDATE_POST_TEXT, newText: text});
+export const  onSendMessageActionCreater = () => ({type: SEND_MESSAGE});
+export const  onUpdateMessageActionCreater = (text) =>
+                        ({type: UPDATE_MESSAGE_TEXT, newText: text});
+
+
 
 
 
