@@ -84,7 +84,7 @@ let store = {
             message: this._state.messagesPage.newMessageText,
         }
         this._state.messagesPage.messages.push(newMessage);
-        // this._state.messagesPage.newMessageText = '';
+        this._state.messagesPage.newMessageText = '';
         this._callSubscriber(this._state);
     },
     _updateMessageText(newText){
@@ -92,6 +92,8 @@ let store = {
         this._callSubscriber(this._state);
     },
     
+
+
     dispatch (action) {
         if(action.type === ADD_POST){
             this._addPost();
@@ -110,11 +112,11 @@ let store = {
 
 
 
-export const onPostBtnActionCreater = () => ({type: ADD_POST});
-export const onChangeTextActionCreater = (text) => 
+export const onPostBtnCreater = () => ({type: ADD_POST});
+export const onChangeTextCreater = (text) => 
                         ({type: UPDATE_POST_TEXT, newText: text});
-export const  onSendMessageActionCreater = () => ({type: SEND_MESSAGE});
-export const  onUpdateMessageActionCreater = (text) =>
+export const  onSendMessageCreater = () => ({type: SEND_MESSAGE});
+export const  onUpdateMessageCreater = (text) =>
                         ({type: UPDATE_MESSAGE_TEXT, newText: text});
 
 

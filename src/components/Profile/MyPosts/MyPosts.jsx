@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import Post from './Post/Post';
-import {onPostBtnActionCreater, onChangeTextActionCreater} from '../../../Redux/state';
+import {onPostBtnCreater, onChangeTextCreater} from '../../../Redux/state';
 
 import s from './MyPosts.module.css';
 
@@ -10,12 +10,12 @@ const MyPosts = (props) => {
 
 
     let onPostBtn = () => {
-        props.dispatch(onPostBtnActionCreater)  
+        props.dispatch(onPostBtnCreater)  
     }
 
     let onChangeText = () => {
         let text = newPostElement.current.value;
-        props.dispatch(onChangeTextActionCreater(text));
+        props.dispatch(onChangeTextCreater(text));
     }
 
     
