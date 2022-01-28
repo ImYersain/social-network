@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import Post from './Post/Post';
-import {onPostBtnCreater, onChangeTextCreater} from '../../../Redux/state';
+import {onPostBtnCreater, onChangeTextCreater} from '../../../Redux/profile-reducer';
 
 import s from './MyPosts.module.css';
 
@@ -10,7 +10,7 @@ const MyPosts = (props) => {
 
 
     let onPostBtn = () => {
-        props.dispatch(onPostBtnCreater)  
+        props.dispatch(onPostBtnCreater())  
     }
 
     let onChangeText = () => {
