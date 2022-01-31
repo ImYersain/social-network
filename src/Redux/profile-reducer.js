@@ -11,11 +11,12 @@ let initialState = {
     newPostText: ''
 }
 
+
+
 const profileReducer = (state = initialState, action) => {
     
 
     const addPost = () => {
-        debugger;
         let newPost = {
             id:'4',
             message: state.newPostText,
@@ -45,4 +46,4 @@ const profileReducer = (state = initialState, action) => {
 export const onPostBtnCreater = () => ({type: ADD_POST});
 export const onChangeTextCreater = (text) => 
                         ({type: UPDATE_POST_TEXT, newText: text});
-export default profileReducer;
+export default profileReducer; 

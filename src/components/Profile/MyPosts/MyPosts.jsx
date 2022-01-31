@@ -1,21 +1,18 @@
 import React, { createRef } from 'react';
 import Post from './Post/Post';
-import {onPostBtnCreater, onChangeTextCreater} from '../../../Redux/profile-reducer';
 
 import s from './MyPosts.module.css';
+
 
 const MyPosts = (props) => {
     let newPostElement = new createRef();
     
-
-
     let onPostBtn = () => {
-        props.dispatch(onPostBtnCreater())  
+        props.addPost(); 
     }
-
-    let onChangeText = () => {
+    let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.dispatch(onChangeTextCreater(text));
+        props.updateNewPostText(text);
     }
 
     
@@ -30,7 +27,7 @@ const MyPosts = (props) => {
                         <textarea   ref={newPostElement}  
                                     value ={props.newPostText}
                                     placeholder="What's on your mind?"
-                                    onChange={onChangeText}
+                                    onChange={onPostChange}
                         />
                     </div>
                     <div>
