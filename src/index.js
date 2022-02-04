@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 import './index.css';
 
 
-let renderEntireTree = (state) => {
+
     ReactDOM.render(
       <React.StrictMode>
         <BrowserRouter>
@@ -20,14 +20,13 @@ let renderEntireTree = (state) => {
       </React.StrictMode>,
       document.getElementById('root')
     );
-  }
 
 
-renderEntireTree(store.getState());
+// renderEntireTree(store.getState());
 
-store.subscribe(() => {
-  let state = store.getState();
-  renderEntireTree(state);
-});
+// store.subscribe(() => {
+//   let state = store.getState();
+//   renderEntireTree(state);
+// });
 
 reportWebVitals();
