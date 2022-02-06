@@ -7,7 +7,7 @@ import s from './Navbar.module.css';
 const Navbar = (props) => {
     let friends = props.state.friends.map(friend => {
         return (
-            <div>
+            <div key={friend.id}>
                 <img src={friend.avatar} alt="avatar"/>
                 <div>{friend.name}</div>
             </div>

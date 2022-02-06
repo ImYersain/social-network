@@ -13,45 +13,39 @@ let initialState = {
     ],
     messages: [
         {message: 'Hi' , id:'1'},
-        {message: 'Hi' , id:'1'}, 
-        {message: 'How are you?' , id:'2'},
-        {message: 'Nice, what about you? :)' , id:'3'},
-        {message: 'Not bad', id:'4'},
-        {message: 'Okay, bye', id:'5'}
+        {message: 'Hi' , id:'2'}, 
+        {message: 'How are you?' , id:'3'},
+        {message: 'Nice, what about you? :)' , id:'4'},
+        {message: 'Not bad', id:'5'},
+        {message: 'Okay, bye', id:'6'}
     ],
     newMessageText: ''
 }
 
 
 const dialogsReducer = (state = initialState, action) => {
-    let copyState = {...state};
-
-    const sendMessage = () => {
-        let newMessage = {
-            id: '6',
-            message: copyState.newMessageText,
-        }
-        copyState = {...state}
-        copyState.messages = [...state.messages]
-
-        copyState.messages.push(newMessage);
-        copyState.newMessageText = '';
-    };
-    const updateMessageText = (newText) => {
-        copyState = {...state}
-        copyState.newMessageText = newText;
-    };
-
+    let stateCopy;
 
     switch(action.type){
+
         case SEND_MESSAGE:
-            sendMessage()
-            return copyState;
+            let body = state.newMessageText;
+            stateCopy = {
+                ...state,
+                newMessageText: '',
+                messages: [...state.messages, {id: '7', message: body} ]
+            };
+            return stateCopy;
+
         case UPDATE_MESSAGE_TEXT:
-            updateMessageText(action.newText)
-            return copyState;
+            stateCopy = {
+                ...state,
+                newMessageText: action.newText
+            };
+            return stateCopy;
+
         default:
-            return copyState;
+            return state;
     }
 }
 

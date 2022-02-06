@@ -25,11 +25,11 @@ let store = {
             ],
             messages: [
                 {message: 'Hi' , id:'1'},
-                {message: 'Hi' , id:'1'}, 
-                {message: 'How are you?' , id:'2'},
-                {message: 'Nice, what about you? :)' , id:'3'},
-                {message: 'Not bad', id:'4'},
-                {message: 'Okay, bye', id:'5'}
+                {message: 'Hi' , id:'2'}, 
+                {message: 'How are you?' , id:'3'},
+                {message: 'Nice, what about you? :)' , id:'4'},
+                {message: 'Not bad', id:'5'},
+                {message: 'Okay, bye', id:'6'}
             ],
             newMessageText: ''
         },

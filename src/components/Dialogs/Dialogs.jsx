@@ -7,9 +7,8 @@ import s from './Dialogs.module.css';
 
 
 const Dialogs = (props) => {
-
-  let dialogsElements = props.messagesPage.dialogs.map(dialog =>  <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>);
-  let messagesElements = props.messagesPage.messages.map(message => <Message message={message.message} />);
+  let dialogsElements = props.messagesPage.dialogs.map(dialog =>  <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} avatar={dialog.avatar} />);
+  let messagesElements = props.messagesPage.messages.map(message => <Message message={message.message} key={message.id} />);
   let newMessageText = props.messagesPage.newMessageText;
 
 
@@ -19,7 +18,7 @@ const Dialogs = (props) => {
     props.updateNewMessageText(text)
   }
   
-  let onSendMessageBtn = (e) => {
+  let onSendMessageBtn = () => {
     props.sendMessage();
 }
 
