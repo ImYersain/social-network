@@ -1,6 +1,6 @@
 .nav {
   grid-area: n;
-  background-color: #edf2f6;
+  background-color: #13CE66;
   padding: 20px;
   border-radius: 5px;
   min-width: 160px;
@@ -11,7 +11,7 @@
   margin-bottom: 5px;
 }
 .item a.active {
-  color: black;
+  color: white;
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
@@ -26,7 +26,7 @@
   text-decoration: none;
 }
 .itemFriends .active {
-  color: black;
+  color: white;
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
@@ -52,7 +52,7 @@
   margin-bottom: 10px;
 }
 .itemSettings .active {
-  color: black;
+  color: white;
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;

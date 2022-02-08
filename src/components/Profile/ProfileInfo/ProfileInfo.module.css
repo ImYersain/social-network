@@ -1,6 +1,6 @@
-img {
+/* img {
     width: 100%;
-}
+} */
 .descriptionBlock {
     padding: 10px;
     text-align: center;
@@ -9,3 +9,7 @@ img {
 .descriptionBlock img {
     width: 199px;
  }
+.imgBlock {
+    max-height: 200px;
+    overflow: hidden;
+}
