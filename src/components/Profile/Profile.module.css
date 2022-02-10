@@ -1,9 +1,7 @@
-/* .content img {
-    width: 100%;
+.content {
+    margin: 0 auto;
+    text-align: center;
 }
-.content .item {
-    color: black;
-} */
-.content img{
+.content img {
     border-radius: 5px;
 }

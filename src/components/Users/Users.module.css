@@ -5,3 +5,25 @@
     width: 100px;
     height: 100px;
 }
+.userWrapper {
+    display: flex;
+    margin-bottom: 20px;
+}
+.userDescription {
+    margin: 10px;
+}
+.userName {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+.userCountry {
+    font-style: oblique;
+    color: gray;
+}
+.followBtn {
+    text-align: center;
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+}

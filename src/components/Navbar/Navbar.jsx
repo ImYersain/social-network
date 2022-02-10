@@ -5,35 +5,36 @@ import s from './Navbar.module.css';
 
 
 const Navbar = (props) => {
-    
+    let activeClass = navData => navData.isActive ? s.active : s.item;
+
     return (
         <nav className={s.nav}>
             <div className={s.item}>
-                <NavLink to='/profile' className = {navData => navData.isActive ? s.active : s.item}>Profile</NavLink>
+                <NavLink to='/profile' className = {activeClass}>Profile</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/users' className = {navData => navData.isActive ? s.active : s.item}>Users</NavLink>
+                <NavLink to='/users' className = {activeClass}>Users</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/dialogs' className = {navData => navData.isActive ? s.active : s.item}>Messages</NavLink>
+                <NavLink to='/dialogs' className = {activeClass}>Messages</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/news' className = {navData => navData.isActive ? s.active : s.item}>News</NavLink>
+                <NavLink to='/news' className = {activeClass}>News</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='music' className = {navData => navData.isActive ? s.active : s.item}>Music</NavLink>
+                <NavLink to='music' className = {activeClass}>Music</NavLink>
             </div>
             <div className={s.itemSettings}>
-            <NavLink to='settings' className = {navData => navData.isActive ? s.active : s.item}>Settings</NavLink>
+            <NavLink to='settings' className = {activeClass}>Settings</NavLink>
             </div>
 
             <div className={s.itemFriends}>
-            <NavLink to='friends' className = {navData => navData.isActive ? s.active : s.itemFriends}>Friends</NavLink>
+            <NavLink to='friends' className = {activeClass}>Friends</NavLink>
                 <div className={s.itemFriend}>
 
                     {props.friends.map(friend => {
                         return (
-                            <div key={friend.id}>
+                            <div key={friend.id} >
                                 <img src={friend.avatar} alt="avatar"/>
                                 <div>{friend.name}</div>
                             </div>

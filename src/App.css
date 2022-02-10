@@ -23,4 +23,6 @@
   grid-area: c;
   background-color: #edf2f6;
   border-radius: 5px;
+  display: grid;
+  grid-template-columns: 400px 1fr;
 }
