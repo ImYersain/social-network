@@ -9,8 +9,14 @@ const Profile = (props) => {
     
     return (
         <div className={s.content}>
-            <ProfileInfo />
-            <MyPostsContainer />
+            <div className={s.firstColumn}>
+                <ProfileInfo />
+                <MyPostsContainer />
+            </div>
+            <div>
+
+            </div>
+            
         </div>
     )
 }

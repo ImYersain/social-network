@@ -3,9 +3,7 @@ const SET_USERS = 'SET_USERS';
 
 let initialState = {
     users: [
-        {id:'1', avatar: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/old_man_male_portrait-512.png', followed: true, fullName:'Alex', status: 'Hi there!', location: {country:'United States', city:'Los Angeles'}},
-        {id:'2', avatar: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/bear_russian_animal_avatar-512.png', followed: true, fullName:'Artyom', status: 'Hi there!', location: {country:'United States', city:'Los Angeles'}},
-        {id:'3', avatar: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png', followed: false, fullName:'Ibragim', status: 'Hi there!', location: {country:'United States', city:'Los Angeles'}},
+        
     ]
 }
 
@@ -25,7 +23,7 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]               
+                users: [...action.users]               
             }
         default:
             return state;
