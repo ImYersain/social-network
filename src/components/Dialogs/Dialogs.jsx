@@ -6,45 +6,44 @@ import s from './Dialogs.module.css';
 
 
 
-const Dialogs = (props) => {
-  let dialogsElements = props.messagesPage.dialogs.map(dialog =>  <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} avatar={dialog.avatar} />);
-  let messagesElements = props.messagesPage.messages.map(message => <Message message={message.message} key={message.id} />);
-  let newMessageText = props.messagesPage.newMessageText;
-
-
-  
-  let onChangeText = (e) => {
+class Dialogs extends React.Component {
+  onChangeText = (e) => {
     let text = e.target.value;
-    props.updateNewMessageText(text)
+    this.props.updateNewMessageText(text)
   }
   
-  let onSendMessageBtn = () => {
-    props.sendMessage();
+  onSendMessageBtn = () => {
+    this.props.sendMessage();
 }
 
 
-  return (
+  render() {
+    let dialogsElements = this.props.messagesPage.dialogs.map(dialog =>  <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} avatar={dialog.avatar} />);
+    let messagesElements = this.props.messagesPage.messages.map(message => <Message message={message.message} key={message.id} />);
 
-    <div className={s.dialogs}>
-      <div className={s.dialogsItems}>
-        {dialogsElements}
-      </div>
-      <div className={s.messages}>
-        {messagesElements}
-        <div className={s.item}>
-              <div>
-                <textarea value={newMessageText}
-                          onChange={onChangeText}
-                />
-              </div>
-              <div>
-                <button onClick={onSendMessageBtn}> Send </button>
-              </div>
+    return (
+
+      <div className={s.dialogs}>
+        <div className={s.dialogsItems}>
+          {dialogsElements}
+        </div>
+        <div className={s.messages}>
+          {messagesElements}
+          <div className={s.item}>
+                <div>
+                  <textarea value={this.props.messagesPage.newMessageText}
+                            onChange={this.onChangeText}
+                  />
+                </div>
+                <div>
+                  <button onClick={this.onSendMessageBtn}> Send </button>
+                </div>
+          </div>
         </div>
       </div>
-    </div>
+    );
+  }
 
-  );
 }
 
 export default Dialogs;
