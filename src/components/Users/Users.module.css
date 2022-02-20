@@ -9,6 +9,21 @@
     display: flex;
     margin-bottom: 20px;
 }
+.userWrapper span{
+    cursor: pointer;
+}
+
+.pages {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    width: 150px;
+    margin: 0 auto;
+}
+.pages span{
+    padding: 2px;
+}
+
 .userDescription {
     margin: 10px;
 }
@@ -26,4 +41,9 @@
     width: 100px;
     height: 25px;
     border-radius: 5px;
+    cursor: pointer;
+}
+.selectedPage{
+    font-weight: bold;
+    font-size: 18px;
 }
