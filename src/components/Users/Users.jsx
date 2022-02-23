@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Users.module';
+import styles from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
 
 const Users = (props) => {
@@ -45,7 +45,7 @@ const Users = (props) => {
 </div>
 <div className={styles.pages}>
     {pages.map(page => {
-      return <span onClick={(e) => { onPageChanged(page) }} className={props.currentPage === page ? styles.selectedPage : null}>{page}</span>
+      return <span onClick={(e) => { props.onPageChanged(page) }} className={props.currentPage === page ? styles.selectedPage : null}>{page}</span>
     })}
   </div>
 </>

@@ -1,7 +1,5 @@
 import React from 'react';
-import styles from './Users.module.css';
 import * as axios from 'axios';
-import userPhoto from '../../assets/images/user.png';
 import Users from './Users';
 
 
@@ -29,6 +27,7 @@ class UsersAPIContainer extends React.Component {
     currentPage={this.props.currentPage}
     onPageChanged={this.onPageChanged}
     users={this.props.users}
+    followToggle={this.props.followToggle}
     
     />
   }
