@@ -1,6 +1,10 @@
 import React from 'react';
-import styles from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
+import Preloader from '../../assets/images/Preloader';
+
+import styles from './Users.module.css';
+
+
 
 const Users = (props) => {
 
@@ -15,7 +19,9 @@ const Users = (props) => {
 
 
   return <>
+  
   <div className={styles.wrapper}>
+  {props.isFetching ? <Preloader />:null}
   {
     props.users.map(user => <div className={styles.userWrapper} key={user.id}>
       <span>
