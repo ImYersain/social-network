@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { followToggleAC, setUsersAC, setCurrentPageAC, setUsersTotalCountAC, toggleIsFetchingAC } from '../../Redux/users-reducer';
+import { followToggle, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching } from '../../Redux/users-reducer';
 import * as axios from 'axios';
 import Users from './Users';
 
@@ -13,7 +13,7 @@ class UsersContainer extends React.Component {
       .then(response => {
         this.props.toggleIsFetching(false);
         this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+        this.props.setUsersTotalCount(response.data.totalCount);
       });
 
   }
@@ -54,26 +54,28 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    followToggle: (userId) => {
-      dispatch(followToggleAC(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users));
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageAC(pageNumber))
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setUsersTotalCountAC(totalCount));
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(toggleIsFetchingAC(isFetching));
-    }
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     followToggle: (userId) => {
+//       dispatch(followToggleAC(userId));
+//     },
+//     setUsers: (users) => {
+//       dispatch(setUsersAC(users));
+//     },
+//     setCurrentPage: (pageNumber) => {
+//       dispatch(setCurrentPageAC(pageNumber))
+//     },
+//     setTotalUsersCount: (totalCount) => {
+//       dispatch(setUsersTotalCountAC(totalCount));
+//     },
+//     toggleIsFetching: (isFetching) => {
+//       dispatch(toggleIsFetchingAC(isFetching));
+//     }
+//   }
+// }
 
 
-export default UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default UsersContainer = connect(mapStateToProps, {
+  followToggle, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching  /* mapDispatchToProps */
+})(UsersContainer);
 
