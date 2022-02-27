@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const SET_USERS_PROFILE = 'SET_USERS_PROFILE';
 
 let initialState = {
 
@@ -8,7 +9,8 @@ let initialState = {
         {id:'2', message: 'Somebody does read Martin Eden?', likes: '7'},
         {id:'3', message: 'Yes, really nice book', likes: '18'}
       ],
-    newPostText: ''
+    newPostText: '',
+    profile: null,
 }
 
 
@@ -29,12 +31,12 @@ const profileReducer = (state = initialState, action) => {
             };
         }
     }
-    const updatePostText = (newText) => {
-        stateCopy = {
-            ...state,
-            newPostText: newText
-        };
-    }
+    // const updatePostText = (newText) => {
+    //     stateCopy = {
+    //         ...state,
+    //         newPostText: newText
+    //     };
+    // }
 
 
     switch(action.type){
@@ -43,8 +45,17 @@ const profileReducer = (state = initialState, action) => {
             addPost();
             return stateCopy;
         case UPDATE_POST_TEXT:
-            updatePostText(action.newText);
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            }
+            // updatePostText(action.newText);          другой вариант изменения стейта с новым текстом в посте
+            // return stateCopy;
+        case SET_USERS_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state;
     } 
@@ -53,4 +64,6 @@ const profileReducer = (state = initialState, action) => {
 export const onPostBtnCreater = () => ({type: ADD_POST});
 export const onChangeTextCreater = (text) => 
                         ({type: UPDATE_POST_TEXT, newText: text});
+export const setUsersProfile = (profile) => 
+                        ({type: SET_USERS_PROFILE, profile});
 export default profileReducer; 

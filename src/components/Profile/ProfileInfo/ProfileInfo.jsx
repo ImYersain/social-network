@@ -1,13 +1,18 @@
 import React from 'react';
+import Preloader from '../../../assets/images/Preloader';
 
 import s from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if(!props.profile){
+        return <Preloader />
+    }
+    
     return (
         <div>
             <div className={s.descriptionBlock}>
                 <div>
-                    <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/hipster_beard_male_man-512.png" alt="#"/>
+                    <img src={props.profile.photos.large} alt="#"/>
                 </div>
                 <div>
                     <h3>Yersain Aldabayev</h3> 

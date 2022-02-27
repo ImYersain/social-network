@@ -1,6 +1,7 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.png';
 import Preloader from '../../assets/images/Preloader';
+import { NavLink } from 'react-router-dom';
 
 import styles from './Users.module.css';
 
@@ -20,7 +21,9 @@ const Users = (props) => {
   let user = props.users.map(user => <div className={styles.userWrapper} key={user.id}>
     <span>
       <div>
+        <NavLink to={'/profile/' + user.id}>
         <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt="#" />
+        </NavLink>
       </div>
       <div>
         <button className={styles.followBtn} onClick={() => props.followToggle(user.id)}>

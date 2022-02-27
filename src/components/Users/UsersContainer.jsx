@@ -75,6 +75,7 @@ const mapStateToProps = (state) => {
 // }
 
 
+
 export default UsersContainer = connect(mapStateToProps, {
   followToggle, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching  /* mapDispatchToProps */
 })(UsersContainer);
