@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
                     <img src={props.profile.photos.large} alt="#"/>
                 </div>
                 <div>
-                    <h3>Yersain Aldabayev</h3> 
+                    <h3>{props.profile.fullName}</h3> 
                 </div>
                 <p>country: Kazakhstan <br/>
                 age: 24 <br/></p>
