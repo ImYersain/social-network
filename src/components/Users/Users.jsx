@@ -51,7 +51,9 @@ const Users = (props) => {
 
     <div className={styles.pages}>
       {pages.map(page => {
-        return <span onClick={(e) => { props.onPageChanged(page) }} className={props.currentPage === page ? styles.selectedPage : null}>{page}</span>
+        return <span onClick={(e) => { props.onPageChanged(page) }} className={props.currentPage === page ? styles.selectedPage : null}>
+            {page}
+          </span>
       })}
     </div>
     <div className={styles.wrapper}>
