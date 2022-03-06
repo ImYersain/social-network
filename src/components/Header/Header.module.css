@@ -7,12 +7,16 @@
   width: 100px;
 }
 .loginBlock{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   float: right;
-  margin: 5px 10px;
+  margin: 8px 10px;
   cursor: pointer;
 }
 .loginBlock a{
   color: black;
   cursor: pointer;
   text-decoration: none;
+  padding-left: 5px;
 }
