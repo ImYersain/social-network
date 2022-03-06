@@ -1,6 +1,6 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.png';
-import Preloader from '../../assets/images/Preloader';
+import Preloader from '../../assets/Preloader';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Users.module.css';

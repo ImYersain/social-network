@@ -1,6 +1,7 @@
 import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+// import Preloader from '../../assets/Preloader';
 
 import s from './Dialogs.module.css';
 
@@ -22,7 +23,8 @@ class Dialogs extends React.Component {
     let messagesElements = this.props.messagesPage.messages.map(message => <Message message={message.message} key={message.id} />);
 
     return (
-
+      <>
+      {/* {this.props.toggleIsFetching? <Preloader />: null }    чтоб включить preloader, надо еще тоглить(true,false) при запросах и получении списка диалогов*/}  
       <div className={s.dialogs}>
         <div className={s.dialogsItems}>
           {dialogsElements}
@@ -41,6 +43,7 @@ class Dialogs extends React.Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 

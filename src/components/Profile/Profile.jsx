@@ -3,21 +3,27 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import ProfileForm from './ProfileInfo/ProfileForm';
 
+import Preloader from '../../assets/Preloader';
+
 import s from './Profile.module.css';
 
 
 const Profile = (props) => {
     return (
-        <div className={s.content}>
-            <div className={s.firstColumn}>
-                <ProfileInfo profile={props.profile}/>
-                <MyPostsContainer />
-            </div>
-            <div>
-                <ProfileForm profile={props.profile} />   
-            </div>
-            
-        </div>
+        <>
+            {!props.profile ? <Preloader style={{ width: '50%', margin: '0 auto' }} /> : (
+                <div className={s.content}>
+                    <div className={s.firstColumn}>
+                        <ProfileInfo profile={props.profile} />
+                        <MyPostsContainer />
+                    </div>
+                    <div>
+                        <ProfileForm profile={props.profile} />
+                    </div>
+                </div>
+            )}
+
+        </>
     )
 }
 

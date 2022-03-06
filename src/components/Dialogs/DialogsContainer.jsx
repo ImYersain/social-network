@@ -1,4 +1,4 @@
-import {onSendMessageCreater, onUpdateMessageCreater} from '../../Redux/dialogs-reducer';
+import {onSendMessageCreater, onUpdateMessageCreater, onToggleIsFetching} from '../../Redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     sendMessage: () => {
       dispatch(onSendMessageCreater());
+    },
+    toggleIsFetching: (isFetching) => {
+      dispatch(onToggleIsFetching(isFetching));
     }
   }
 }
