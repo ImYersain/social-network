@@ -2,6 +2,7 @@ import React from 'react';
 import userPhoto from '../../assets/images/user.png';
 import Preloader from '../../assets/Preloader';
 import { NavLink } from 'react-router-dom';
+import * as axios from 'axios';
 
 import styles from './Users.module.css';
 
@@ -22,11 +23,37 @@ const Users = (props) => {
     <span>
       <div>
         <NavLink to={'/profile/' + user.id}>
-        <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt="#" />
+          <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt="#" />
         </NavLink>
       </div>
       <div>
-        <button className={styles.followBtn} onClick={() => props.followToggle(user.id)}>
+        <button className={styles.followBtn} onClick={() => {
+          axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+            withCredentials: true,
+            headers: {
+              'API-KEY':'62e00a35-a71b-4a1c-b57a-e377af0a9ee0'
+            }
+          })
+            .then(response => {
+              if (response.data.resultCode === 0) {
+                props.followToggle(user.id)
+              }
+            });
+
+
+            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+            withCredentials: true,
+            headers: {
+              'API-KEY':'62e00a35-a71b-4a1c-b57a-e377af0a9ee0'
+            }
+          })
+            .then(response => {
+              if (response.data.resultCode === 0) {
+                props.followToggle(user.id)
+              }
+            });
+        }
+        }>
           {user.followed ? 'Unfollow' : 'Follow'}
         </button>
       </div>
@@ -42,8 +69,8 @@ const Users = (props) => {
       </span>
     </span>
   </div>
-  ) 
-  
+  )
+
 
 
 
@@ -52,14 +79,14 @@ const Users = (props) => {
     <div className={styles.pages}>
       {pages.map(page => {
         return <span onClick={(e) => { props.onPageChanged(page) }} className={props.currentPage === page ? styles.selectedPage : null}>
-            {page}
-          </span>
+          {page}
+        </span>
       })}
     </div>
     <div className={styles.wrapper}>
       {props.isFetching ? <Preloader style={{ width: '50%', margin: '0 auto' }} /> : user}
     </div>
-    
+
   </>
 }
 

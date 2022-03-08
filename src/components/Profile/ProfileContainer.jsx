@@ -22,14 +22,9 @@ class ProfileContainer extends React.Component{
            <Profile {...this.props} />
         )
     }
-    
-    
 }
 
 
-let mapDispatchToProps = (state) => ({
-    profile: state.profilePage.profile
-});
 
 const ProfileMatch = (props) => {
 	let match = useMatch("/profile/:userId/");
@@ -37,5 +32,11 @@ const ProfileMatch = (props) => {
 		<ProfileContainer {...props} match={match} />
 	)
 }
+
+
+
+let mapDispatchToProps = (state) => ({
+    profile: state.profilePage.profile
+});
 
 export default connect(mapDispatchToProps, { setUsersProfile })(ProfileMatch);

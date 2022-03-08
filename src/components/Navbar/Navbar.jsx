@@ -29,7 +29,7 @@ const Navbar = (props) => {
             </div>
 
             <div className={s.itemFriends}>
-            <NavLink to='friends' className = {activeClass}>Friends</NavLink>
+            <NavLink to='/users'  className = {activeClass}>Friends</NavLink>
                 <div className={s.itemFriend}>
 
                     {props.friends.map(friend => {
