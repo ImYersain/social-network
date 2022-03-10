@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { followToggle, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching } from '../../Redux/users-reducer';
 import Users from './Users';
-import {usersAPI} from '../../api/api';
+import { usersAPI } from '../../api/api';
 
 
 
