@@ -2,7 +2,6 @@ import React from 'react';
 import userPhoto from '../../assets/images/user.png';
 import Preloader from '../../assets/Preloader';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
 
 import styles from './Users.module.css';
 
@@ -28,28 +27,13 @@ const Users = (props) => {
       </div>
       <div>
         <button className={styles.followBtn} disabled={props.followingProgress.some(id => id === user.id )} onClick={() => {
-
           if (user.followed === true) {
-            props.toggleIsFollowingProgress(true,user.id)
-            usersAPI.unfollow(user.id).then(data => {
-              if (data.resultCode === 0) {
-                props.followToggle(user.id)
-              }
-              props.toggleIsFollowingProgress(false, user.id)
-            });
+            props.unfollow(user.id)
           }
           else {
-            props.toggleIsFollowingProgress(true,user.id)
-            usersAPI.follow(user.id).then(data => {
-              if (data.resultCode === 0) {
-                props.followToggle(user.id)
-              }
-              props.toggleIsFollowingProgress(false,user.id)
-            });
-
+            props.follow(user.id)
           }
-        }
-        }>
+        }}>
           {user.followed ? 'Unfollow' : 'Follow'}
         </button>
       </div>
