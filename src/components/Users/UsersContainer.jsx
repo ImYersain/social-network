@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setCurrentPage, getUsersThunkCreator, follow, unfollow } from '../../Redux/users-reducer';
 import Users from './Users';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -16,7 +17,6 @@ class UsersContainer extends React.Component {
     //   });
 
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
-
   }
 
   onPageChanged = (pageNumber) => {
@@ -34,6 +34,7 @@ class UsersContainer extends React.Component {
 
 
   render() {
+    if(!this.props.isAuth) return <Navigate to={'/login'} />
     return <>
       <Users totalUsersCount={this.props.totalUsersCount}
         pageSize={this.props.pageSize}
@@ -60,6 +61,7 @@ const mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
     followingProgress: state.usersPage.followingProgress,
+    isAuth: state.auth.isAuth,
   }
 }
 

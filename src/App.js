@@ -9,6 +9,8 @@ import Settings from './components/Settings/Settings';
 // import Friends from './components/Friends/Friends';
 import UsersContainer from './components/Users/UsersContainer';
 import {Routes,Route} from 'react-router-dom';
+import Login from './components/Login/Login';
+
 
 import './App.css';
 
@@ -22,13 +24,15 @@ const App = (props) => {
     <div className='app-wrapper-content'>
       <Routes>
           <Route path='/profile/*' element={ <ProfileContainer /> }/>
+          <Route path='/users' element={<UsersContainer />} />
           <Route path='/dialogs/*' element={<DialogsContainer />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
+          <Route path='/login' element={<Login />} />
           {/* <Route path='/friends' element={<Friends />} /> */}
          
-          <Route path='/users' element={<UsersContainer />} />
+        
       </Routes>
     </div>
           

@@ -35,7 +35,7 @@ export default authReducer;
 
 
 
-export const authThankCreator = () => {
+export const authThunkCreator = () => {
     return (dispatch) => {
         authAPI.me()
             .then(data => {

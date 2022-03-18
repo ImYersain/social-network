@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { authThankCreator } from '../../Redux/auth-reducer';
+import { authThunkCreator } from '../../Redux/auth-reducer';
 
 
 class HeaderContainer extends React.Component{
     componentDidMount() {
-        this.props.authThankCreator()
+        this.props.authThunkCreator()
     }
 
     render() {
@@ -21,4 +21,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
 })
-export default connect(mapStateToProps, {authThankCreator})(HeaderContainer);
+export default connect(mapStateToProps, {authThunkCreator})(HeaderContainer);
