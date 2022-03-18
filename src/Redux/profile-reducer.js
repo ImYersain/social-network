@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api';
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const SET_USERS_PROFILE = 'SET_USERS_PROFILE';
@@ -61,9 +63,19 @@ const profileReducer = (state = initialState, action) => {
     } 
 } 
 
-export const onPostBtnCreater = () => ({type: ADD_POST});
-export const onChangeTextCreater = (text) => 
+export const addPost = () => ({type: ADD_POST});
+export const updateNewPostText = (text) => 
                         ({type: UPDATE_POST_TEXT, newText: text});
 export const setUsersProfile = (profile) => 
                         ({type: SET_USERS_PROFILE, profile});
 export default profileReducer; 
+
+
+export const getUsersThunkCreator = (userId) => {
+    return (dispatch) => {
+        usersAPI.getUser(userId).then(data => {
+            dispatch(setUsersProfile(data));
+         });
+    }
+
+}

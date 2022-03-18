@@ -40,11 +40,14 @@ export const usersAPI = {
             })
     },
 
-    auth(){
+}
+
+export const authAPI = {
+    me(){
         return instance.get(`auth/me`)
-            .then(response => {
-                return response.data
-            })
+        .then(response => {
+            return response.data
+        })
     }
 }
 

@@ -1,4 +1,4 @@
-import {onPostBtnCreater, onChangeTextCreater} from '../../../Redux/profile-reducer';
+import {addPost, updateNewPostText} from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
 
@@ -10,22 +10,20 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: () => {
-            let action = onPostBtnCreater();
-            dispatch(action)
-        },
-        updateNewPostText: (text) => {
-            let action = onChangeTextCreater(text); 
-            dispatch(action)
-        } 
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         addPost: () => {
+//             let action = addPost();               в переменную экшн помещаем вызов экшн-крейтора
+//             dispatch(action)                      диспатчим экшн
+//         },
+//         updateNewPostText: (text) => {
+//             let action = updateNewPostText(text); 
+//             dispatch(action)
+//         } 
+//     } 
+// }
 
 
-const MyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
-
-
+const MyPostContainer = connect(mapStateToProps, { addPost, updateNewPostText })(MyPosts)
 
 export default MyPostContainer;
