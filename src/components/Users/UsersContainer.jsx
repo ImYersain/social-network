@@ -3,33 +3,19 @@ import { connect } from 'react-redux';
 import { setCurrentPage, getUsersThunkCreator, follow, unfollow } from '../../Redux/users-reducer';
 import Users from './Users';
 import { Navigate } from 'react-router-dom';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
 
 
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    // this.props.toggleIsFetching(true);
-
-    // usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
-    //     this.props.toggleIsFetching(false);
-    //     this.props.setUsers(data.items);
-    //     this.props.setUsersTotalCount(data.totalCount);
-    //   });
-
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
-
     this.props.getUsers(pageNumber, this.props.pageSize);
 
-    // this.props.toggleIsFetching(true);
-
-    // usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-    //   this.props.toggleIsFetching(false);
-    //   this.props.setUsers(data.items);
-    // });
   }
 
 
@@ -52,6 +38,8 @@ class UsersContainer extends React.Component {
 }
 
 
+let AuthRedirectComponent = withAuthRedirect(<UsersContainer />);
+
 
 const mapStateToProps = (state) => {
   return {
@@ -60,8 +48,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
-    followingProgress: state.usersPage.followingProgress,
-    isAuth: state.auth.isAuth,
+    followingProgress: state.usersPage.followingProgress
   }
 }
 
@@ -90,5 +77,5 @@ const mapStateToProps = (state) => {
 export default UsersContainer = connect(mapStateToProps, {
   setCurrentPage, follow, unfollow,
   getUsers : getUsersThunkCreator  /* mapDispatchToProps(функции которые диспатчат, вызов action creater-ов) */
-})(UsersContainer);
+})(AuthRedirectComponent);
 
