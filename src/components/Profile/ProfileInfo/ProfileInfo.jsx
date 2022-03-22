@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileStatus from './ProfileStatus';
 
 import s from './ProfileInfo.module.css';
 
@@ -13,8 +14,10 @@ const ProfileInfo = (props) => {
                 <div>
                     <h3>{props.profile.fullName}</h3> 
                 </div>
-                <p>country: Kazakhstan <br/>
-                age: 24 <br/></p>
+                <ProfileStatus status="hello world"/>
+                
+                {/* <p>country: Kazakhstan <br/>
+                age: 24 <br/></p> */}
             </div>
         </div>
     )
