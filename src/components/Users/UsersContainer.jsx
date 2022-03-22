@@ -4,6 +4,7 @@ import { setCurrentPage, getUsersThunkCreator, follow, unfollow } from '../../Re
 import Users from './Users';
 import { Navigate } from 'react-router-dom';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 
 
@@ -37,8 +38,6 @@ class UsersContainer extends React.Component {
 
 }
 
-
-let AuthRedirectComponent = withAuthRedirect(<UsersContainer />);
 
 
 const mapStateToProps = (state) => {
@@ -74,8 +73,12 @@ const mapStateToProps = (state) => {
 
 
 
-export default UsersContainer = connect(mapStateToProps, {
-  setCurrentPage, follow, unfollow,
-  getUsers : getUsersThunkCreator  /* mapDispatchToProps(функции которые диспатчат, вызов action creater-ов) */
-})(AuthRedirectComponent);
+export default compose(
+  connect(mapStateToProps, {
+    setCurrentPage, follow, unfollow,
+    getUsers : getUsersThunkCreator  /* mapDispatchToProps(функции которые диспатчат, вызов action creater-ов) */
+  }),
+  withAuthRedirect
+)(UsersContainer)
+
 
