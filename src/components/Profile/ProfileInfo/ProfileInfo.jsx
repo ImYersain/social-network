@@ -12,9 +12,9 @@ const ProfileInfo = (props) => {
                     <img src={props.profile.photos.large} alt="#"/>
                 </div>
                 <div>
-                    <h3>{props.profile.fullName}</h3> 
+                    <h1>{props.profile.fullName}</h1> 
                 </div>
-                <ProfileStatus status="hello world"/>
+                <ProfileStatus />
                 
                 {/* <p>country: Kazakhstan <br/>
                 age: 24 <br/></p> */}
