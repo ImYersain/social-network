@@ -73,7 +73,7 @@ export default profileReducer;
 
 export const getUsersThunkCreator = (userId) => {
     return (dispatch) => {
-        usersAPI.getUser(userId).then(data => {
+        usersAPI.getProfile(userId).then(data => {
             dispatch(setUsersProfile(data));
          });
     }
