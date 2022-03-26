@@ -1,35 +1,40 @@
 import React from 'react';
 
-import s from './ProfileInfo.module.css';
 
 class ProfileStatus extends React.Component{
     state = {
         editMode: false,
-        statusText: ' ',
+        status: this.props.status
     }
 
     activateEditMode = () => {
-        debugger;
-        this.setState({editMode: true})
+        this.setState({
+            editMode: true
+        })
     }
     deactivateEditMode = () => {
-        this.setState({editMode: false})
+        this.setState({
+            editMode: false,
+        })
+        this.props.updateStatus(this.state.status)
     }
-    updateStatusText = (e) => {
-        let text = e.target.value;
-        this.setState({statusText: text})
+    onStatusChange = (e) => {
+        this.setState({
+            status: e.currentTarget.value 
+        })
     }
+    
 
     render(){
 
         return (<>
             {!this.state.editMode?<div>
-                    <span onDoubleClick={this.activateEditMode} > 
+                    <span onDoubleClick={this.activateEditMode} onTouchStart={this.activateEditMode} > 
                         <span style={{color:'gray', fontSize:'12px'}}> <i>Status</i>: </span>
-                        {this.state.statusText}
+                        {this.props.status || "hi there, a haven't status yet"}
                     </span>
                 </div> : <div>
-                    <input autoFocus onBlur={this.deactivateEditMode} onChange={this.updateStatusText} value={this.state.statusText} />
+                    <input onChange={this.onStatusChange} autoFocus onBlur={this.deactivateEditMode} onTouchCancel={this.deactivateEditMode} value={this.state.status} />
                 </div>
         }
             

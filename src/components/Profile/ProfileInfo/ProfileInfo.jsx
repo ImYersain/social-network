@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
                 <div>
                     <h1>{props.profile.fullName}</h1> 
                 </div>
-                <ProfileStatus />
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 
                 {/* <p>country: Kazakhstan <br/>
                 age: 24 <br/></p> */}
