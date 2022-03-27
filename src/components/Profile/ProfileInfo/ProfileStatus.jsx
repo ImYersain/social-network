@@ -28,17 +28,18 @@ class ProfileStatus extends React.Component{
     render(){
 
         return (<>
-            {!this.state.editMode?<div>
+            {   !this.state.editMode && <div>
                     <span onDoubleClick={this.activateEditMode} onTouchStart={this.activateEditMode} > 
                         <span style={{color:'gray', fontSize:'12px'}}> <i>Status</i>: </span>
-                        {this.props.status || "hi there, a haven't status yet"}
+                        {this.state.status || "hi there, a haven't status yet"}
                     </span>
-                </div> : <div>
-                    <input onChange={this.onStatusChange} autoFocus onBlur={this.deactivateEditMode} onTouchCancel={this.deactivateEditMode} value={this.state.status} />
                 </div>
-        }
-            
-              
+            }    
+
+            {   this.state.editMode && <div>
+                    <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode}  value={this.state.status} />
+                </div>
+            } 
         </>)
     }
 }
