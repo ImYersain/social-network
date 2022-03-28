@@ -7,7 +7,7 @@ const Post = (props) => {
     return (
             <div className={s.item}>
                 <span>
-                    <img alt='avatar' src={props.profile.photos.small != null? props.profile.photos.small: userPhoto}></img>
+                    <img alt='avatar' src={props.photo.small != null? props.photo.small: userPhoto}></img>
                 </span>
                 <span className={s.itemDescr}>
                     <p>{props.message}</p>

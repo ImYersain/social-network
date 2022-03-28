@@ -16,7 +16,7 @@ class MyPosts extends React.Component {
  
 
     render() {
-        let postsElements = this.props.posts.map(post => <Post {...this.props} message={post.message} likes={post.likes} key={post.id}/> );
+        let postsElements = this.props.posts.map(post => <Post photo={this.props.profile.photos} message={post.message} likes={post.likes} key={post.id}/> );
 
         return (
             <div>
