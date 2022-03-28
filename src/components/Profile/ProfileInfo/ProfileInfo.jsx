@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfileStatus from './ProfileStatus';
+import userPhoto from '../../../assets/images/user.png';
 
 import s from './ProfileInfo.module.css';
 
@@ -9,7 +10,7 @@ const ProfileInfo = (props) => {
         <div>
             <div className={s.descriptionBlock}>
                 <div>
-                    <img src={props.profile.photos.large} alt="#"/>
+                    <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} alt="#"/>
                 </div>
                 <div>
                     <h1>{props.profile.fullName}</h1> 

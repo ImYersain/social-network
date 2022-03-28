@@ -84,6 +84,7 @@ export default profileReducer;
 
 
 
+//санки:
 
 export const getUserThunkCreator = (userId) => {
     return (dispatch) => {
