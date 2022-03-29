@@ -10,7 +10,7 @@ const Post = (props) => {
                     <img alt='avatar' src={props.photo.small != null? props.photo.small: userPhoto}></img>
                 </span>
                 <span className={s.itemDescr}>
-                    <p>{props.message}</p>
+                    <p className={s.word}>{props.message}</p>
                     <div>
                     {props.likes}
                         <span> / </span>

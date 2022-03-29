@@ -3,7 +3,7 @@
 }
 .posts {
     padding: 10px;
-    max-width: 250px;
+    width: 250px;
 }
 .item textarea {
     width: 200px;

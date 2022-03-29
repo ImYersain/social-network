@@ -1,5 +1,4 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
@@ -20,7 +19,6 @@ let initialState = {
         {message: 'Not bad', id:'5'},
         {message: 'Okay, bye', id:'6'}
     ],
-    newMessageText: '',
     isFetching: null
 }
 
@@ -31,18 +29,10 @@ const dialogsReducer = (state = initialState, action) => {
     switch(action.type){
 
         case SEND_MESSAGE:
-            let body = state.newMessageText;
+            let body = action.newMessageBody;
             stateCopy = {
                 ...state,
-                newMessageText: '',
                 messages: [...state.messages, {id: '7', message: body} ]
-            };
-            return stateCopy;
-
-        case UPDATE_MESSAGE_TEXT:
-            stateCopy = {
-                ...state,
-                newMessageText: action.newText
             };
             return stateCopy;
         case TOGGLE_IS_FETCHING:
@@ -57,8 +47,7 @@ const dialogsReducer = (state = initialState, action) => {
 
 export const onToggleIsFetching = (isFetching) => (
     {type: TOGGLE_IS_FETCHING,
-    isFetching: isFetching})
-export const  onSendMessageCreater = () => ({type: SEND_MESSAGE});
-export const  onUpdateMessageCreater = (text) =>
-                        ({type: UPDATE_MESSAGE_TEXT, newText: text});
+    isFetching: isFetching}
+    )
+export const  onSendMessageCreater = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody});
 export default dialogsReducer;

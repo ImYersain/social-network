@@ -1,7 +1,6 @@
 import { usersAPI, profileAPI } from '../api/api';
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 
@@ -9,10 +8,9 @@ let initialState = {
 
     posts: [
         {id:'1', message: 'Hi, how are you?', likes: '1'}, 
-        {id:'2', message: 'Somebody does read Martin Eden?', likes: '7'},
+        {id:'2', message: 'Comon #Chelsea fc!', likes: '7'},
         {id:'3', message: 'Yes, really nice book', likes: '18'}
       ],
-    newPostText: '',
     profile: null,
     status: '',
 }
@@ -21,10 +19,10 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     let stateCopy;
 
-    const addPost = () => {
+    const addPost = (newPostBody) => {
         let newPost = {
             id:'4',
-            message: state.newPostText,
+            message: newPostBody,
             likes: '0'
         }
         if(newPost.message !== '') {
@@ -46,15 +44,8 @@ const profileReducer = (state = initialState, action) => {
     switch(action.type){
         
         case ADD_POST:
-            addPost();
+            addPost(action.newPostBody);
             return stateCopy;
-        case UPDATE_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-            // updatePostText(action.newText);          другой вариант изменения стейта с новым текстом в посте
-            // return stateCopy;
         case SET_USER_PROFILE:{
             return {
                 ...state,
@@ -72,9 +63,8 @@ const profileReducer = (state = initialState, action) => {
     } 
 } 
 
-export const addPost = () => ({type: ADD_POST});
-export const updateNewPostText = (text) => 
-                        ({type: UPDATE_POST_TEXT, newText: text});
+export const addPost = (newPostBody) => ({type: ADD_POST, newPostBody});
+
 export const setUserProfile = (profile) => 
                         ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => 

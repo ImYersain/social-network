@@ -1,17 +1,18 @@
 import React from 'react';
 import Post from './Post/Post';
+import { Field, reduxForm } from 'redux-form';
 
 import s from './MyPosts.module.css';
 
 
 class MyPosts extends React.Component {
     
-    onPostBtn = () => {
-        this.props.addPost(); 
-    }
-    onPostChange = (e) => {
-        let text = e.target.value;
-        this.props.updateNewPostText(text);
+    // onPostBtn = () => {
+    //     this.props.addPost(); 
+    // }
+    addNewPost = (values) => {
+        alert(values.newPostBody);
+        this.props.addPost(values.newPostBody); 
     }
  
 
@@ -23,15 +24,7 @@ class MyPosts extends React.Component {
                 <div className={s.postsBlock}>
                 <h3>New Post</h3>
                 <div className={s.item}>
-                    <div>
-                        <textarea   value ={this.props.newPostText}
-                                    placeholder="What's on your mind?"
-                                    onChange={this.onPostChange}
-                        />
-                    </div>
-                    <div>
-                        <button onClick={this.onPostBtn}> Add post </button>
-                    </div>
+                    <AddPostFormRedux onSubmit={this.addNewPost} />
                 </div>
                 </div>
                 <div className={s.posts}>
@@ -42,5 +35,25 @@ class MyPosts extends React.Component {
     }
 
 }
+
+const AddPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component='textarea' name='newPostBody' placeholder='Whats on your mind?' />
+                {/* <textarea  value ={this.props.newPostText}
+                            placeholder="What's on your mind?"
+                            onChange={this.onPostChange}
+                /> */}
+            </div>
+            <div>
+                <button> Add post </button>
+            </div>
+        </form>
+    )
+}
+
+
+const AddPostFormRedux = reduxForm({form: 'profielAddPostForm'})(AddPostForm)
 
 export default MyPosts;

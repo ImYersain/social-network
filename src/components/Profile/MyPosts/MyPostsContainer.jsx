@@ -1,4 +1,4 @@
-import { addPost, updateNewPostText } from '../../../Redux/profile-reducer';
+import { addPost } from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 
@@ -25,6 +25,6 @@ const mapStateToProps = (state) => {
 // }
 
 
-const MyPostContainer = connect(mapStateToProps, { addPost, updateNewPostText })(MyPosts)  // connect c помощью context API ложит в мапстейттуПропс СТЕЙТ
+const MyPostContainer = connect(mapStateToProps, { addPost })(MyPosts)  // connect c помощью context API ложит в мапстейттуПропс СТЕЙТ
 
 export default MyPostContainer;
