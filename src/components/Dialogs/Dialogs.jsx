@@ -1,9 +1,10 @@
 import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { Field, reduxForm } from 'redux-form';
+import AddMessageForm from './AddMessageForm/AddMessageForm';
 
 import s from './Dialogs.module.css';
+
 
 
 
@@ -23,17 +24,13 @@ class Dialogs extends React.Component {
       {/* {this.props.toggleIsFetching? <Preloader />: null }    чтоб включить preloader, надо еще тоглить(true,false) при запросах и получении списка диалогов*/}  
       <div className={s.dialogs}>
         <div className={s.dialogsItems}>
-
           {dialogsElements}
-
         </div>
         <div className={s.messages}>
-
           {messagesElements}
           <div className={s.item}>
-              <AddMessageFormRedux onSubmit={this.addNewMessage} />
+              <AddMessageForm onSubmit={this.addNewMessage} />
           </div>
-
         </div>
       </div>
       </>
@@ -43,20 +40,6 @@ class Dialogs extends React.Component {
 }
 
 
-const AddMessageForm = (props) => {
-    return (
-      <form onSubmit={props.handleSubmit}>
-        <div>
-          <Field component='textarea' name='newMessageBody' placeholder='Enter your message' />
-        </div>
-        <div>
-          <button> Send </button>
-        </div>
-      </form> 
-    )
-  }
 
-
-const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm)
 
 export default Dialogs;

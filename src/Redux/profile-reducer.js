@@ -25,13 +25,11 @@ const profileReducer = (state = initialState, action) => {
             message: newPostBody,
             likes: '0'
         }
-        if(newPost.message !== '') {
-            stateCopy = {
-                ...state,
-                newPostText: '',
-                posts: [...state.posts, newPost],
-            };
-        }
+        stateCopy = {
+            ...state,
+            newPostText: '',
+            posts: [...state.posts, newPost],
+        };
     }
     // const updatePostText = (newText) => {
     //     stateCopy = {
