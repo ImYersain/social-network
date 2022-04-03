@@ -5,6 +5,7 @@ import { getUserThunkCreator, getUserStatus, updateStatus } from '../../Redux/pr
 import {withRouter} from '../common/WithRouter';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { Navigate } from 'react-router-dom';
 
 
 
