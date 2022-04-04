@@ -23,13 +23,15 @@ const LoginForm = (props) => {
                 <div>
                     <button type="submit">Login</button>
                 </div>
+                {props.error && <div className={styles.formSummaryError}>
+                                    {props.error}
+                                </div>
+                }
             </form>
 }
 
 
-const LoginReduxForm = reduxForm({
-    form: 'login' 
-})(LoginForm)
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 
 

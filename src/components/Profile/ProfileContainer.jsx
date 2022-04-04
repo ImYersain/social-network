@@ -3,9 +3,7 @@ import Profile from './Profile';
 import { connect } from 'react-redux';
 import { getUserThunkCreator, getUserStatus, updateStatus } from '../../Redux/profile-reducer';
 import {withRouter} from '../common/WithRouter';
-import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
-import { Navigate } from 'react-router-dom';
 
 
 
@@ -13,7 +11,7 @@ import { Navigate } from 'react-router-dom';
 class ProfileContainer extends React.Component{
     
     componentDidMount(){
-        let userId = this.props.match ? this.props.match.params.userId : '22726';
+        let userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
         this.props.getUserThunkCreator(userId);
         this.props.getUserStatus(userId);
     }
@@ -29,7 +27,9 @@ class ProfileContainer extends React.Component{
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 });
 
 
