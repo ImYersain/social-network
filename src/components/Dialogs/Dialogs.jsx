@@ -21,18 +21,17 @@ class Dialogs extends React.Component {
 
     return (
       <>
-      {/* {this.props.toggleIsFetching? <Preloader />: null }    чтоб включить preloader, надо еще тоглить(true,false) при запросах и получении списка диалогов*/}  
-      <div className={s.dialogs}>
-        <div className={s.dialogsItems}>
-          {dialogsElements}
+        <div className={s.dialogs}>
+            <div className={s.dialogsItems}>
+              {dialogsElements}
+            </div>
+            <div className={s.messages}>
+              {messagesElements}
+              <div className={s.item}>
+                  <AddMessageForm onSubmit={this.addNewMessage} />
+              </div>
+            </div>
         </div>
-        <div className={s.messages}>
-          {messagesElements}
-          <div className={s.item}>
-              <AddMessageForm onSubmit={this.addNewMessage} />
-          </div>
-        </div>
-      </div>
       </>
     );
   }

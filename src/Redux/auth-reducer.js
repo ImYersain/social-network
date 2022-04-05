@@ -8,7 +8,7 @@ const SET_USER_DATA = 'SET_USER_DATA';
 let initialState = {
     userId: null,
     email: null,
-    password: null,
+    login: null,
     isAuth: false
 }
 
@@ -36,16 +36,15 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({  /* либо
 
 //thunkCreater'y:
 
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        authAPI.me()
-            .then(data => {
-                if(data.resultCode === 0){
-                    let {id,login,email} = data.data;
-                    dispatch(setAuthUserData(id,email,login,true));
-                }
-            });
-    }
+export const getAuthUserData = () => (dispatch) => { 
+    
+    return authAPI.me()
+        .then(data => {
+            if(data.resultCode === 0){
+                let {id,login,email} = data.data;
+                dispatch(setAuthUserData(id,email,login,true));
+            }
+        });
 }
 
 
