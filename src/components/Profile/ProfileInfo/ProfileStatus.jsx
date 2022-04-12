@@ -1,55 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 
-class ProfileStatus extends React.Component{
-    state = {
-        editMode: false,
-        status: this.props.status
-    }
-
-    activateEditMode = () => {
-        this.setState({
-            editMode: true
-        })
-    }
-    deactivateEditMode = () => {
-        this.setState({
-            editMode: false,
-        })
-        this.props.updateStatus(this.state.status)
-    }
-    onStatusChange = (e) => {
-        this.setState({
-            status: e.currentTarget.value 
-        })
-    }
+const ProfileStatus = (props) => {
+    let [ editMode, setEditMode] = useState(false);
+    let [ status, setStatus] = useState(props.status);
     
-    componentDidUpdate(prevProps, prevState){
-        if(prevProps.status !== this.props.status){
-            this.setState({
-                status: this.props.status
-            })
-        }
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status])
+
+    const activateEditMode = () => {
+        setEditMode(true)
     }
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        props.updateStatus(status)
+    }
+
+    return (<>
+        {   !editMode && <div>
+                <span onDoubleClick={activateEditMode} > 
+                    <span style={{color:'gray', fontSize:'12px'}}> <i>Status</i>: </span>
+                    {status || "hi there, a haven't status yet"}
+                </span>
+            </div>
+        }    
+
+        {   editMode && <div>
+                <input onChange={(e) => setStatus(e.currentTarget.value)} onBlur={deactivateEditMode}  autoFocus={true} value={status} />
+            </div>
+        } 
+    </>)
     
-
-    render(){
-
-        return (<>
-            {   !this.state.editMode && <div>
-                    <span onDoubleClick={this.activateEditMode} onTouchStart={this.activateEditMode} > 
-                        <span style={{color:'gray', fontSize:'12px'}}> <i>Status</i>: </span>
-                        {this.state.status || "hi there, a haven't status yet"}
-                    </span>
-                </div>
-            }    
-
-            {   this.state.editMode && <div>
-                    <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode}  value={this.state.status} />
-                </div>
-            } 
-        </>)
-    }
 }
 
 export default ProfileStatus;
