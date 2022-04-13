@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from './Post/Post';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import {requiredField, maxLengthCreater} from '../../utils/validators//validators';
 import { Textarea } from '../../common/FormsControls/FormsControls';
 
@@ -12,7 +12,7 @@ let maxLength30 = maxLengthCreater(30);
 class MyPosts extends React.Component {
     
     addNewPost = (values) => {
-        this.props.addPost(values.newPostBody); 
+        this.props.addPost(values.newPostBody);
     }
  
 

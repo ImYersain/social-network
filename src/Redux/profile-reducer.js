@@ -43,6 +43,7 @@ const profileReducer = (state = initialState, action) => {
         
         case ADD_POST:
             addPost(action.newPostBody);
+            
             return stateCopy;
         case SET_USER_PROFILE:{
             return {
