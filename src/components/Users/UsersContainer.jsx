@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { connect } from 'react-redux';
 import { requestUsers, follow, unfollow } from '../../Redux/users-reducer';
 import Users from './Users';
@@ -8,32 +8,28 @@ import { getPageSize, getUserSelector, getCurrentPage, getIsFetching, getTotalUs
 
 
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+const UsersContainer = (props) => {
+  useEffect(() => {
+    props.requestUsers(props.currentPage, props.pageSize);
+  }, [])
+
+  const onPageChanged = (pageNumber) => {
+    props.requestUsers(pageNumber, props.pageSize);
   }
 
-  onPageChanged = (pageNumber) => {
-    this.props.requestUsers(pageNumber, this.props.pageSize);
-  }
-
-
-  render() {
-    // if(!this.props.isAuth) return <Navigate to={'/login'} />
-    return <>
-      <Users totalUsersCount={this.props.totalUsersCount}
-        pageSize={this.props.pageSize}
-        currentPage={this.props.currentPage}
-        onPageChanged={this.onPageChanged}
-        users={this.props.users}
-        follow={this.props.follow}
-        unfollow={this.props.unfollow}
-        isFetching={this.props.isFetching}
-        followingProgress={this.props.followingProgress}
-      />
-    </>
-  }
-
+ 
+  return <>
+    <Users 
+      totalUsersCount={props.totalUsersCount}
+      pageSize={props.pageSize}
+      currentPage={props.currentPage}
+      onPageChanged={onPageChanged}
+      users={props.users}
+      follow={props.follow}
+      unfollow={props.unfollow}
+      isFetching={props.isFetching}
+      followingProgress={props.followingProgress} />
+  </>
 }
 
 
@@ -53,11 +49,6 @@ const mapStateToProps = (state) => {
 
 
 export default compose(
-  connect(mapStateToProps, {
-    follow, unfollow,
-    requestUsers          /* mapDispatchToProps(функции которые диспатчат, вызов action creater-ов) */
-  }),
+  connect(mapStateToProps, { follow, unfollow, requestUsers })/* mapDispatchToProps(функции которые диспатчат, вызов action creater-ов) */,
   withAuthRedirect
 )(UsersContainer)
-
-

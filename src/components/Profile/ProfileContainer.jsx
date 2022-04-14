@@ -18,13 +18,6 @@ const ProfileContainer = (props) => {
         props.getUserStatus(userId);
     }, [])
     
-    // componentDidMount(){
-    //     let userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
-
-    //     this.props.getUserThunkCreator(userId);
-    //     this.props.getUserStatus(userId);
-    // }
-
 
         // if(!this.props.isAuth) return <Navigate to={'/login'} />
     return (

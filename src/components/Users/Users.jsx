@@ -18,36 +18,37 @@ const Users = (props) => {
     }
   }
 
-  let user = props.users.map(user => <div className={styles.userWrapper} key={user.id}>
-    <span>
-      <div>
-        <NavLink to={'/profile/' + user.id}>
-          <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt="#" />
-        </NavLink>
-      </div>
-      <div>
-        <button className={styles.followBtn} disabled={props.followingProgress.some(id => id === user.id )} onClick={() => {
-          if (user.followed === true) {
-            props.unfollow(user.id)
-          }
-          else {
-            props.follow(user.id)
-          }
-        }}>
-          {user.followed ? 'Unfollow' : 'Follow'}
-        </button>
-      </div>
-    </span>
-    <span className={styles.userDescription}>
+  let user = props.users.map(user => 
+    <div className={styles.userWrapper} key={user.id}>
       <span>
-        <div className={styles.userName}>{user.name}</div>
-        <div>{user.status}</div>
+        <div>
+          <NavLink to={'/profile/' + user.id}>
+            <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt="#" />
+          </NavLink>
+        </div>
+        <div>
+          <button className={styles.followBtn} disabled={props.followingProgress.some(id => id === user.id )} onClick={() => {
+            if (user.followed === true) {
+              props.unfollow(user.id)
+            }
+            else {
+              props.follow(user.id)
+            }
+          }}>
+            {user.followed ? 'Unfollow' : 'Follow'}
+          </button>
+        </div>
       </span>
-      <span className={styles.userCountry}>
-        <div>{'user.location.country'}</div>
-        <div>{'user.location.city'}</div>
+      <span className={styles.userDescription}>
+        <span>
+          <div className={styles.userName}>{user.name}</div>
+          <div>{user.status}</div>
+        </span>
+        <span className={styles.userCountry}>
+          <div>{'user.location.country'}</div>
+          <div>{'user.location.city'}</div>
+        </span>
       </span>
-    </span>
   </div>
   )
 
