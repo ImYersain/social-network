@@ -8,21 +8,21 @@ import { getPageSize, getUserSelector, getCurrentPage, getIsFetching, getTotalUs
 
 
 
-const UsersContainer = (props) => {
+const UsersContainer = ({requestUsers, currentPage, pageSize, ...props}) => {
   useEffect(() => {
-    props.requestUsers(props.currentPage, props.pageSize);
+    requestUsers(currentPage, pageSize);
   }, [])
 
   const onPageChanged = (pageNumber) => {
-    props.requestUsers(pageNumber, props.pageSize);
+    requestUsers(pageNumber, pageSize);
   }
 
  
   return <>
     <Users 
       totalUsersCount={props.totalUsersCount}
-      pageSize={props.pageSize}
-      currentPage={props.currentPage}
+      pageSize={pageSize}
+      currentPage={currentPage}
       onPageChanged={onPageChanged}
       users={props.users}
       follow={props.follow}

@@ -4,21 +4,18 @@ import userPhoto from '../../../assets/images/user.png';
 
 import s from './ProfileInfo.module.css';
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
     
     return (
         <div>
             <div className={s.descriptionBlock}>
                 <div>
-                    <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} alt="#"/>
+                    <img src={profile.photos.large != null ? profile.photos.large : userPhoto} alt="#"/>
                 </div>
                 <div>
-                    <h1>{props.profile.fullName}</h1> 
+                    <h1>{profile.fullName}</h1> 
                 </div>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-                
-                {/* <p>country: Kazakhstan <br/>
-                age: 24 <br/></p> */}
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     )

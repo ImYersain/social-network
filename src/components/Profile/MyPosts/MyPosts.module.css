@@ -3,7 +3,8 @@
 }
 .posts {
     padding: 10px;
-    width: 250px;
+    width: 300px;
+    margin: 0 auto;
 }
 .item textarea {
     width: 200px;

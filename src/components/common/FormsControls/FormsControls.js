@@ -19,15 +19,15 @@ export const Textarea = ({ input, meta, ...props }) => {
 }
 
 
-export const Input = ({ input, meta, ...props }) => {
-    const hasError = meta.touched && meta.error;
+export const Input = ({ input, meta: {touched, error}, ...props }) => {
+    const hasError = touched && error;
 
     return <div>
         <div className={styles.formControl + ' ' + (hasError? styles.error: '')}>
             <div>
                 <input {...input} {...props} className={styles.s} /> 
             </div>
-            {hasError && <span>{meta.error}</span>}     
+            {hasError && <span>{error}</span>}     
         </div>
         
     </div>

@@ -10,8 +10,8 @@ import styles from './Login.module.css';
 
 
 
-const LoginForm = (props) => {
-    return   <form onSubmit={props.handleSubmit}>
+const LoginForm = ({handleSubmit, error}) => {
+    return   <form onSubmit={handleSubmit}>
                 <div>
                     <Field placeholder='email' name={'email'} validate={[requiredField]}
                     autoComplete="on" component={Input} /></div>
@@ -23,8 +23,8 @@ const LoginForm = (props) => {
                 <div>
                     <button type="submit">Login</button>
                 </div>
-                {props.error && <div className={styles.formSummaryError}>
-                                    {props.error}
+                {error && <div className={styles.formSummaryError}>
+                                    {error}
                                 </div>
                 }
             </form>
@@ -35,12 +35,12 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        login(formData.email, formData.password, formData.rememberMe);
     }
     
-    if(props.isAuth) {
+    if(isAuth) {
         return <Navigate to={'/profile'} />
     }
 

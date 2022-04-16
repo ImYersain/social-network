@@ -62,7 +62,7 @@ const profileReducer = (state = initialState, action) => {
         case DELETE_POST:            
             return {
                 ...state,
-                post: state.posts.filter(p => p.id != action.id)
+                post: state.posts.filter(p => p.id !== action.id)
             };
         default:
             return state;
@@ -91,28 +91,20 @@ export default profileReducer;
 
 //санки:
 
-export const getUserThunkCreator = (userId) => {
-    return (dispatch) => {
-        usersAPI.getProfile(userId).then(data => {
-            dispatch(setUserProfile(data));
-         });
-    }
+export const getUserThunkCreator = (userId) => async (dispatch) => {
+        let response = await usersAPI.getProfile(userId);
+        dispatch(setUserProfile(response));
 }
 
-export const getUserStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getStatus(userId)
-            .then(data => {
-                dispatch(setUserStatus(data));
-         });
-    }
+export const getUserStatus = (userId) => async (dispatch) => {
+        let response = await profileAPI.getStatus(userId)
+        dispatch(setUserStatus(response));
 }
 
-export const updateStatus = (status) => (dispatch) => {
-        profileAPI.updateStatus(status)
-            .then(response => {
-                if(response.data.resultCode === 0){
-                    dispatch(setUserStatus(status));
-                }
-         });
+export const updateStatus = (status) => async (dispatch) => {
+        let response = await profileAPI.updateStatus(status)
+
+        if(response.data.resultCode === 0){
+            dispatch(setUserStatus(status));
+        }
     }
