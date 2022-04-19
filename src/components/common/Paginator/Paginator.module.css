@@ -2,7 +2,7 @@
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
-    width: 150px;
+    width: 350px;
     margin: 0 auto;
     background-color: white;
     text-align: center;
@@ -10,4 +10,17 @@
 }
 .pages span{
     padding: 2px;
+}
+.pageNumber {
+    padding: 2px;
+    border: 1px solid grey;
+    margin: 0 1px;
+}
+.pageNumber.selectedPage {
+    font-weight: bold;
+    border-color: black;
+} 
+.btn {
+    margin: 0 2px;
+    border-radius: 2px;
 }

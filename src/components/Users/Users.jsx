@@ -9,7 +9,7 @@ import styles from './Users.module.css';
 const Users = ({ users, totalUsersCount, pageSize, onPageChanged, currentPage, followingProgress, ...props }) => {
 
   return <>
-    <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize}
+    <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize}
       onPageChanged={onPageChanged} currentPage={currentPage} />
     <div className={styles.wrapper}>
       {props.isFetching ? <Preloader style={{ width: '50%', margin: '0 auto' }} /> : users.map(user => <User key={user.id} user={user}
