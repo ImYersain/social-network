@@ -33,10 +33,10 @@ const User = ({user, followingProgress, unfollow, follow}) => {
           <div className={styles.userName}>{user.name}</div>
           <div>{user.status}</div>
         </span>
-        <span className={styles.userCountry}>
+        {/* <span className={styles.userCountry}>
           <div>{'user.location.country'}</div>
           <div>{'user.location.city'}</div>
-        </span>
+        </span> */}
       </span>
   </div>
 }
