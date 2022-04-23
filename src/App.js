@@ -9,7 +9,7 @@ import { Routes,Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initializeApp } from './Redux/app-reducer';
 import { compose } from 'redux';
-import { withRouter } from './components/common/WithRouter';
+import { withRouter } from './components/hoc/WithRouter';
 import Preloader from './assets/Preloader';
 
 import './App.css';

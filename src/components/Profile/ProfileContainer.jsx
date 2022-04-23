@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import { getUserThunkCreator, getUserStatus, updateStatus } from '../../Redux/profile-reducer';
-import { withRouter } from '../common/WithRouter';
+import { withRouter } from '../hoc/WithRouter';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 
@@ -13,13 +13,12 @@ const ProfileContainer = (props) => {
     
     useEffect(() => {
         let userId = props.match ? props.match.params.userId : props.authorizedUserId;
-
+        
         props.getUserThunkCreator(userId);
         props.getUserStatus(userId);
-    }, [])
-    
 
-        // if(!this.props.isAuth) return <Navigate to={'/login'} />
+    }, [props.match])
+    
     return (
         <Profile {...props} updateStatus={props.updateStatus} />
     )
