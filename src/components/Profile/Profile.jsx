@@ -14,7 +14,9 @@ const Profile = (props) => {
             {!props.profile ? <Preloader style={{ width: '50%', margin: '0 auto' }} /> : (
                 <div className={s.content}>
                     <div className={s.firstColumn}>
-                        <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+                        <ProfileInfo    profile={props.profile} status={props.status}
+                                        updateStatus={props.updateStatus} isOwner={props.isOwner}
+                                        savePhoto={props.savePhoto} />
                         <MyPostsContainer />
                     </div>
                     <div>

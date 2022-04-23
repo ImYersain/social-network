@@ -1,10 +1,15 @@
-
 .descriptionBlock {
     padding: 10px;
 }
 .descriptionBlock img {
+    display: block;
     width: 199px;
+    margin: 0 auto;
+    margin-bottom: 10px;
  }
  .wrapperInfo{
-     padding: 10px;
+    padding: 10px;
+ }
+ .mainPhoto{
+    margin-bottom: 30px;
  }
