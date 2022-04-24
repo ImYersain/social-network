@@ -19,7 +19,7 @@ const ProfileStatus = (props) => {
 
     return (<>
         {   !editMode && <div>
-                <span onDoubleClick={activateEditMode} > 
+                <span onDoubleClick={activateEditMode} onTouchStart={activateEditMode} > 
                     <span style={{color:'gray', fontSize:'12px'}}> <i>Status</i>: </span>
                     {status || "hi there, a haven't status yet"}
                 </span>

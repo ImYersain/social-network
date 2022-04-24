@@ -11,7 +11,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
             savePhoto(e.target.files[0]);
         } 
     }
-
+    
     return (
         <div>
             <div className={s.descriptionBlock}>
