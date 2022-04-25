@@ -2,29 +2,31 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Input, Textarea } from '../../common/FormsControls/FormsControls';
 
-import s from './ProfileInfo.module.css';
+import styles from './ProfileInfo.module.css';
 
 
 
-const PofileFormEdit = ({profile, handleSubmit}) => {
+const PofileFormEdit = ({profile, handleSubmit, error}) => {
     return <form onSubmit={handleSubmit}> 
-    <div className={s.wrapperInfo}>
+    <div className={styles.wrapperInfo}>
         <div><b>Full Name:</b>
             <Field placeholder='fullName' name={'fullName'} component={Input} />
         </div>
         <div><br/> <b>About me:</b>
             <Field placeholder='aboutMe' name={'aboutMe'} component={Textarea} />
         </div>
-        {/* <div>
+        <div>
             <br/>
             <ul><b>Contacts:</b>
                 <div style={{'paddingLeft':'20px'}}>
                 {Object.keys(profile.contacts).map(key => {
-                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+                    return <div key={key}>
+                        <b>{key}</b> : <Field placeholder={key} name={'contacts.' + key} component={Input} />
+                    </div>
                 })}
                 </div>
             </ul>
-        </div> */}
+        </div>
         <br/>
          <div><br/><b>Looking for a job:</b> 
             <Field name={'lookingForAJob'} component={Input} type={'checkbox'} />
@@ -36,6 +38,10 @@ const PofileFormEdit = ({profile, handleSubmit}) => {
          </div>
     </div>
     <div><button>Save</button></div>
+    {error && <div className={styles.formSummaryError}>
+        {error}
+    </div>
+    }
 </form>
 }
 
