@@ -8,7 +8,10 @@ const ProfileForm = ({profile, isOwner, goToEditMode}) => {
     return (
         <div>
             <div className={s.wrapperInfo}>
-                <div><b>About me:</b>
+                <div><b>Full Name:</b>
+                    <div>{profile.fullName}</div>
+                </div>
+                <div><br/><b>About me:</b>
                     <div>{profile.aboutMe}</div>
                 </div>
                 <div>

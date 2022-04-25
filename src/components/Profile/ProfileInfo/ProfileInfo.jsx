@@ -20,7 +20,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
                     {isOwner && <input type={"file"} onChange={onMainPhotoSelected} name='uploadPhoto'></input>}
                 </div>
                 <div>
-                    <h1>{profile.fullName}</h1> 
+                    <h1>{profile.fullName.split(' ')[0]}</h1> 
                 </div>
                 <ProfileStatus status={status} updateStatus={updateStatus}/>
             </div>

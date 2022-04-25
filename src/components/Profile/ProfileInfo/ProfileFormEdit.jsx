@@ -7,10 +7,13 @@ import s from './ProfileInfo.module.css';
 
 
 const PofileFormEdit = ({profile, handleSubmit}) => {
-    return <form onSubmit={handleSubmit}> {/* почему передаем onsubmit а встречаем handlesubmit */}
+    return <form onSubmit={handleSubmit}> 
     <div className={s.wrapperInfo}>
-        <div><b>About me:</b>
-            {/* <Field placeholder='aboutMe' name={'aboutMe'} component={Textarea} /> */}
+        <div><b>Full Name:</b>
+            <Field placeholder='fullName' name={'fullName'} component={Input} />
+        </div>
+        <div><br/> <b>About me:</b>
+            <Field placeholder='aboutMe' name={'aboutMe'} component={Textarea} />
         </div>
         {/* <div>
             <br/>
@@ -23,13 +26,13 @@ const PofileFormEdit = ({profile, handleSubmit}) => {
             </ul>
         </div> */}
         <br/>
-         <div><b>Looking for a job:</b> 
-            <Field name={'lookingForAJob'} component={Input} type={'checkbox'}/>
+         <div><br/><b>Looking for a job:</b> 
+            <Field name={'lookingForAJob'} component={Input} type={'checkbox'} />
             <br/>
          </div>
          <div><b>Skills:</b> 
             <div>{profile.lookingForAJobDescription}</div>
-            <Field placeholder='Professional skills' name={'lookingForAJobDescription'} component={Textarea}/>
+            <Field placeholder='Professional skills' name={'lookingForAJobDescription'} component={Textarea} />
          </div>
     </div>
     <div><button>Save</button></div>

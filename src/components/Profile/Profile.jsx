@@ -13,6 +13,7 @@ const Profile = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile
     const [editMode, setEditMode] = useState(false);
     const onSubmit = (formData) => {
         saveProfile(formData);
+        setEditMode(false);
     }
 
 
@@ -27,7 +28,7 @@ const Profile = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile
                         <MyPostsContainer />
                     </div>
                     <div>
-                        { editMode? <PofileFormEditReduxForm profile={profile} onSubmit={onSubmit} /> : <ProfileForm profile={profile} isOwner={isOwner} goToEditMode={() => {setEditMode(true)}}/>}
+                        { editMode? <PofileFormEditReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit} /> : <ProfileForm profile={profile} isOwner={isOwner} goToEditMode={() => {setEditMode(true)}}/>}
                     </div>
                 </div>
             )}

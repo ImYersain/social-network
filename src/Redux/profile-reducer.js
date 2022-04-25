@@ -98,7 +98,7 @@ export default profileReducer;
 
 //санки:
 
-export const getUserThunkCreator = (userId) => async (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
         let response = await usersAPI.getProfile(userId);
         dispatch(setUserProfile(response));
 }
@@ -124,10 +124,10 @@ export const savePhoto = (file) => async (dispatch) => {
     }
 }
 
-export const saveProfile = (profile) => async (dispatch) => {
-    let response = await profileAPI.saveProfile(profile)
-    debugger;
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    let userId = getState().auth.userId;
+    let response = await profileAPI.saveProfile(profile);
     if(response.data.resultCode === 0){
-        //dispatch(savePhotoSuccess(response.data.data.photos));
+        dispatch(getUserProfile(userId))
     }
 }
