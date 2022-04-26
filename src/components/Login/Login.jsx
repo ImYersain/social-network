@@ -10,7 +10,7 @@ import styles from './Login.module.css';
 
 
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
     return   <form onSubmit={handleSubmit}>
                 <div>
                     <Field placeholder='email' name={'email'} validate={[requiredField]}
@@ -20,6 +20,10 @@ const LoginForm = ({handleSubmit, error}) => {
                     autoComplete="on" validate={[requiredField]} component={Input} /></div>
                 <div>
                     <Field type="checkbox" name={'rememberMe'} component={Input} /> Remember me </div>
+
+                {captchaUrl && <img src={captchaUrl} alt="Captcha" />}
+                {captchaUrl && <Field placeholder='Symbols from image' name={'captcha'} validate={[requiredField]} component={Input} />}
+
                 <div>
                     <button type="submit">Login</button>
                 </div>
@@ -35,9 +39,9 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 
 
-const Login = ({login, isAuth}) => {
+const Login = ({login, isAuth, captchaUrl}) => {
     const onSubmit = (formData) => {
-        login(formData.email, formData.password, formData.rememberMe);
+        login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
     
     if(isAuth) {
@@ -46,12 +50,13 @@ const Login = ({login, isAuth}) => {
 
     return  <div className={styles.wrapper}>
                 <h1>Login</h1>
-                <LoginReduxForm onSubmit={onSubmit}/>
+                <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
             </div>
 }
 
 const mapStateToProps = (state) => ({
-    isAuth : state.auth.isAuth
+    isAuth : state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapStateToProps, { login } )(Login);
