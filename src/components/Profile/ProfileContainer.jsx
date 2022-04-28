@@ -12,7 +12,7 @@ import { withAuthRedirect } from '../hoc/withAuthRedirect';
 const ProfileContainer = (props) => {
     
     useEffect(() => {
-        let userId = props.match ? props.match.params.userId : props.authorizedUserId;
+        let userId = props.match ? props.match.params.userId : props.authorizedUserId; //props.match в пропсах взялся, благодаря хоку withRouter
         
         props.getUserProfile(userId);
         props.getUserStatus(userId);
