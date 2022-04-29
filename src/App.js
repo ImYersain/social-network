@@ -3,7 +3,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import { Routes,Route, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { initializeApp } from './Redux/app-reducer';
+import { initializeApp } from './Redux/app-reducer.ts';
 import { compose } from 'redux';
 import { withRouter } from './components/hoc/WithRouter';
 import Preloader from './assets/Preloader';
