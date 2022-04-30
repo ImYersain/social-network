@@ -12,10 +12,9 @@ const Users = ({ users, totalUsersCount, pageSize, onPageChanged, currentPage, f
     <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize}
       onPageChanged={onPageChanged} currentPage={currentPage} />
     <div className={styles.wrapper}>
-      {props.isFetching ? <Preloader style={{ width: '50%', margin: '0 auto' }} /> : users.map(user => <User key={user.id} user={user}
+      {props.isFetching ? <Preloader style={{width: '100%', position:'absolute', left:'0'}} /> : users.map(user => <User key={user.id} user={user}
         followingProgress={followingProgress} follow={props.follow} unfollow={props.unfollow} />)}
     </div>
-
   </>
 }
 

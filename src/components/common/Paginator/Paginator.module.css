@@ -2,7 +2,9 @@
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
-    width: 350px;
+    /* width: 90%; */
+    width: 500px;
+    height: 20px;
     margin: 0 auto;
     background-color: white;
     text-align: center;

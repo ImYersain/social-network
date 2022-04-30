@@ -1,4 +1,6 @@
+import { PhotosType, UserType } from '../types/types';
 import { usersAPI } from '../api/api';
+
 
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -9,15 +11,17 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 
 let initialState = {
-    users: [],
+    users: [] as Array<UserType>,
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingProgress: []
+    followingProgress: [] as Array<number>      //array of users id's
 }
+type InitialStateType = typeof initialState;
 
-const usersReducer = (state = initialState, action) => {
+
+const usersReducer = (state = initialState, action:any):InitialStateType => {
 
     switch (action.type) {
         case TOGGLE_FOLLOW:
@@ -65,28 +69,62 @@ const usersReducer = (state = initialState, action) => {
 }
 
 
-
-export const followToggle = (userId) => ({
+type FollowToggleType = {
+    type: typeof TOGGLE_FOLLOW,
+    userId: number
+}
+export const followToggle = (userId:number):FollowToggleType => ({
     type: TOGGLE_FOLLOW,
     userId
 });
-export const setUsers = (users) => ({
+
+
+type SetUsersType = {
+    type: typeof SET_USERS,
+    users: Array<UserType>
+}
+export const setUsers = (users:Array<UserType>):SetUsersType => ({
     type: SET_USERS,
-    users //это как users: users
+    users           //это как users: users
 });
-export const setCurrentPage = (currentPage) => ({
+
+
+type SetCurrentPageType = {
+    type: typeof SET_CURRENT_PAGE,
+    currentPage: number
+}
+export const setCurrentPage = (currentPage:number):SetCurrentPageType => ({
     type: SET_CURRENT_PAGE,
     currentPage
 });
-export const setUsersTotalCount = (totalUsersCount) => ({
+
+
+type SetUsersTotalCountType = {
+    type: typeof SET_TOTAL_USERS_COUNT,
+    count: number
+}
+export const setUsersTotalCount = (totalUsersCount:number):SetUsersTotalCountType => ({
     type: SET_TOTAL_USERS_COUNT,
     count: totalUsersCount
 });
-export const toggleIsFetching = (isFetching) => ({
+
+
+type ToggleIsFetchingType = {
+    type: typeof TOGGLE_IS_FETCHING,
+    isFetching: boolean
+}
+export const toggleIsFetching = (isFetching:boolean):ToggleIsFetchingType => ({
     type: TOGGLE_IS_FETCHING,
     isFetching: isFetching
 });
-export const toggleIsFollowingProgress = (isFetching, userId) => ({
+
+
+type ToggleIsFollowingProgressType = {
+    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS,
+    isFetching: boolean, 
+    userId: number
+}
+export const toggleIsFollowingProgress = (isFetching:boolean, userId:number):ToggleIsFollowingProgressType => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
     isFetching,
     userId
@@ -96,7 +134,7 @@ export const toggleIsFollowingProgress = (isFetching, userId) => ({
 
 //thunk-и:
 
-export const requestUsers = (page, pageSize) => async (dispatch) => {
+export const requestUsers = (page:number, pageSize:number) => async (dispatch:any) => {
     dispatch(toggleIsFetching(true))
     dispatch(setCurrentPage(page))
     let response = await usersAPI.getUsers(page, pageSize)
@@ -107,7 +145,7 @@ export const requestUsers = (page, pageSize) => async (dispatch) => {
 }
 
 
-const followUnfollowFlow = async (userId, dispatch, apiMethod) => {     /* общая функция чтоб не дублировать код ниже*/
+const followUnfollowFlow = async (userId:number, dispatch:any, apiMethod:any) => {     /* общая функция чтоб не дублировать код ниже*/
     dispatch(toggleIsFollowingProgress(true, userId))
     let response = await apiMethod;
 
@@ -119,11 +157,11 @@ const followUnfollowFlow = async (userId, dispatch, apiMethod) => {     /* об�
 
 
 
-export const follow = (userId) => async (dispatch) => {
+export const follow = (userId:number) => async (dispatch:any) => {
     let apiMethod = usersAPI.follow(userId)
     followUnfollowFlow(userId, dispatch, apiMethod)
 }
-export const unfollow = (userId) => async (dispatch) => {
+export const unfollow = (userId:number) => async (dispatch:any) => {
     let apiMethod = usersAPI.unfollow(userId)
     followUnfollowFlow(userId, dispatch, apiMethod)
 }

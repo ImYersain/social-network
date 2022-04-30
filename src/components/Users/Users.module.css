@@ -1,5 +1,8 @@
 .wrapper {
     padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
 }
 .userPhoto {
     width: 100px;
@@ -7,7 +10,8 @@
 }
 .userWrapper {
     display: flex;
-    margin-bottom: 20px;
+    margin: 0 auto;
+    margin-bottom: 50px;
     width: 300px;
 }
 .userWrapper span{

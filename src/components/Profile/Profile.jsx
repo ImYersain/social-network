@@ -19,7 +19,7 @@ const Profile = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile
 
     return (
         <>
-            {!profile ? <Preloader style={{ width: '50%', margin: '0 auto' }} /> : (
+            {!profile ? <Preloader style={{ width: '100%', margin: '0 auto' }} /> : (
                 <div className={s.content}>
                     <div className={s.firstColumn}>
                         <ProfileInfo    profile={profile} status={status}
