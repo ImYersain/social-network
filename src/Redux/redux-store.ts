@@ -10,7 +10,7 @@ import { reducer as formReducer } from 'redux-form';
 
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     usersPage: usersReducer,
     messagesPage: dialogsReducer,
@@ -20,7 +20,11 @@ let reducers = combineReducers({
     form: formReducer,
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>
+
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export default store;
+//@ts-ignore
 window.store = store;
