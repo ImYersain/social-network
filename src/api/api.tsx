@@ -69,7 +69,9 @@ export const profileAPI = {
 export enum ResultCodesEnum {
     success = 0,
     error = 1,
-    captchaIsRequired = 10,
+}
+export enum ResultCodeForCaptcha {
+    captchaIsRequired = 10
 }
 type MeResponseType = {
     data: {
@@ -80,6 +82,14 @@ type MeResponseType = {
     resultCode: ResultCodesEnum
     messages: Array<string>
 }
+type LoginResponseType = {
+    data: {
+        userId: number
+    }
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+    messages: Array<string>
+}
+
 export const authAPI = {
     me(){
         return instance.get<MeResponseType>(`auth/me`)
@@ -88,7 +98,10 @@ export const authAPI = {
         })
     },
     login(email: string, password: string, rememberMe: boolean = false, captcha: null | string = null){
-        return instance.post(`auth/login`,{ email, password, rememberMe, captcha })
+        return instance.post<LoginResponseType>(`auth/login`,{ email, password, rememberMe, captcha })
+        .then(response => {
+            return response.data
+        })
     },
     logout(){
         return instance.delete(`auth/login`)
