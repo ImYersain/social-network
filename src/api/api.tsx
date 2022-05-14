@@ -1,4 +1,5 @@
-import * as axios from 'axios';
+import axios from 'axios';
+import { ProfileType } from '../types/types';
 
 
 const instance = axios.create({
@@ -12,25 +13,25 @@ const instance = axios.create({
 
 export const usersAPI = {
 
-    getUsers(currentPage, pageSize){
+    getUsers(currentPage: number, pageSize: number){
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
           .then(response => {
               return response.data
           })
     },
-    unfollow(userId){
+    unfollow(userId: number){
         return instance.delete(`follow/${userId}`)
             .then(response => {
                 return response.data
             })
     },
-    follow(userId){
+    follow(userId: number){
         return instance.post(`follow/${userId}`)
             .then(response => {
                 return response.data
             })
     },
-    getProfile(userId){
+    getProfile(userId: number){
         // console.warn('Obsolete method. Please use ProfileAPI object');
         return profileAPI.getProfile(userId);
     }
@@ -38,42 +39,55 @@ export const usersAPI = {
 
 export const profileAPI = {
 
-    getProfile(userId){
+    getProfile(userId: number){
         return instance.get(`profile/${userId}`)
             .then(response => {
                 return response.data
             })
     },
-    getStatus(userId){
+    getStatus(userId: number){
         return instance.get(`profile/status/${userId}`)
         .then(response => {
             return response.data
         })
     },
-    updateStatus(status){
+    updateStatus(status: string){
         return instance.put(`profile/status`, { status: status });
     },
-    savePhoto(file){
+    savePhoto(file: any){
         const formData = new FormData();
         formData.append('image', file);
         return instance.put(`profile/photo`, formData, { headers: {
             'Content-Type': 'multipart/form-data'
           }});
     },
-    saveProfile(profile){
+    saveProfile(profile: ProfileType){
         return instance.put(`profile`, profile);
     }
 }
 
-
+export enum ResultCodesEnum {
+    success = 0,
+    error = 1,
+    captchaIsRequired = 10,
+}
+type MeResponseType = {
+    data: {
+        id: number
+        email: string
+        login: string
+    }
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+}
 export const authAPI = {
     me(){
-        return instance.get(`auth/me`)
+        return instance.get<MeResponseType>(`auth/me`)
         .then(response => {
             return response.data
         })
     },
-    login(email, password, rememberMe = false, captcha = null){
+    login(email: string, password: string, rememberMe: boolean = false, captcha: null | string = null){
         return instance.post(`auth/login`,{ email, password, rememberMe, captcha })
     },
     logout(){
@@ -90,4 +104,6 @@ export const securityAPI = {
         })
     }
 }
+
+
 
