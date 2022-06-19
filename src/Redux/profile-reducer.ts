@@ -1,6 +1,6 @@
 import { ProfileType, PostType, PhotosType } from '../types/types';
-import { usersAPI, profileAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
+import { profileAPI } from '../api/profile-api';
 
 
 const ADD_POST = 'ADD-POST';
@@ -113,7 +113,8 @@ export default profileReducer;
 //санки:
 
 export const getUserProfile = (userId:number) => async (dispatch:any) => {
-        let response = await usersAPI.getProfile(userId);
+        // let response = await usersAPI.getProfile(userId);
+        let response = await profileAPI.getProfile(userId);
         dispatch(setUserProfile(response));
 }
 
@@ -126,7 +127,7 @@ export const updateStatus = (status:string) => async (dispatch:any) => {
     try {
         let response = await profileAPI.updateStatus(status)
 
-        if(response.data.resultCode === 0){
+        if(response.resultCode === 0){
             dispatch(setUserStatus(status));
         }
     }  catch (error:any){
@@ -137,18 +138,18 @@ export const updateStatus = (status:string) => async (dispatch:any) => {
 export const savePhoto = (file:any) => async (dispatch:any) => {
     let response = await profileAPI.savePhoto(file)
 
-    if(response.data.resultCode === 0){
-        dispatch(savePhotoSuccess(response.data.data.photos));
+    if(response.resultCode === 0){
+        dispatch(savePhotoSuccess(response.data.photos));
     }
 }
 
 export const saveProfile = (profile:ProfileType) => async (dispatch:any, getState:any) => {
     let userId = getState().auth.userId;
     let response = await profileAPI.saveProfile(profile);
-    if(response.data.resultCode === 0){
+    if(response.resultCode === 0){
         dispatch(getUserProfile(userId))
     } else {
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+        let message = response.messages.length > 0 ? response.messages[0] : 'Some error';
         dispatch(stopSubmit('edit-profile', {_error : message}))
         return Promise.reject();
     }

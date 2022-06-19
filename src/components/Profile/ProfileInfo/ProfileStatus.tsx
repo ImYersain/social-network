@@ -31,7 +31,7 @@ const ProfileStatus:FC<PropsType> = ({status, updateStatus}) => {
         }    
 
         {   editMode && <div>
-                <input onChange={(e) => setStatusValue(e.currentTarget.value)} onBlur={deactivateEditMode}  autoFocus={true} value={status} />
+                <input onChange={(e) => setStatusValue(e.currentTarget.value)} onBlur={deactivateEditMode}  autoFocus={true} value={statusValue} />
             </div>
         } 
     </>)
