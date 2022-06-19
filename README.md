@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+test account:<br/>
+login: ersainaldabaev@gmail.com
+pass: reactredux
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
