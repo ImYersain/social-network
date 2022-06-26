@@ -1,19 +1,23 @@
-import profileReducer, { addPost, deletePost } from './profile-reducer';
+ import profileReducer, { actions } from './profile-reducer';
+import { PostType } from '../types/types';
 
 
 let state = { 
     posts: [
-        {id:'1', message: 'Hi, how are you?', likes: '1'}, 
-        {id:'2', message: 'Comon #Chelsea fc!', likes: '7'},
-        {id:'3', message: 'Yes, really nice book', likes: '18'}
-      ]
-    };
+        {id: 1, message: 'Hi, how are you?', likes: 1}, 
+        {id: 2, message: 'Comon #Chelsea fc!', likes: 7},
+        {id: 3, message: 'Yes, really nice book', likes: 18}
+      ] as Array<PostType>,
+    profile: null,
+    status: '',
+    newPostText: ''
+};
 
 
 test('length should be incremented', () => {
 //1. test data
 
-    let action = addPost('New post yeahe');
+    let action = actions.addPost('New post yeahe');
 
 //2. action
     const newState = profileReducer(state,action);
@@ -26,7 +30,7 @@ test('length should be incremented', () => {
 test('message should be correct', () => {
     //1. test data
     
-        let action = addPost('New post yeahe');
+        let action = actions.addPost('New post yeahe');
     
     //2. action
         const newState = profileReducer(state,action);
@@ -40,7 +44,7 @@ test('message should be correct', () => {
 test('after delete , length should be 2', () => {
     //1. test data
     
-        let action = deletePost(4);
+        let action = actions.deletePost(4);
     
     //2. action
         const newState = profileReducer(state,action);

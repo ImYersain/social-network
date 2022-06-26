@@ -1,5 +1,4 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+import { InfernActionsTypes } from './redux-store';
 
 
 type DialogType = {
@@ -29,23 +28,26 @@ let initialState = {
         {message: 'Not bad', id: 5},
         {message: 'Okay, bye', id: 6}
     ] as Array <MessageType>,
-    isFetching: null
+    isFetching: null as boolean | null
 }
 export type InitialStateType = typeof initialState;
+type ActionsType = InfernActionsTypes<typeof actions>
 
-const dialogsReducer = (state = initialState, action:any):InitialStateType => {
+
+
+const dialogsReducer = (state = initialState, action:ActionsType):InitialStateType => {
     let stateCopy;
 
     switch(action.type){
 
-        case SEND_MESSAGE:
+        case 'SN/DIALOGS/SEND-MESSAGE':
             let body = action.newMessageBody;
             stateCopy = {
                 ...state,
                 messages: [...state.messages, {id: 7, message: body} ]
             };
             return stateCopy;
-        case TOGGLE_IS_FETCHING:
+        case 'SN/DIALOGS/TOGGLE_IS_FETCHING':
             return {
                 ...state,
                 isFetching: action.isFetching
@@ -55,18 +57,16 @@ const dialogsReducer = (state = initialState, action:any):InitialStateType => {
     }
 }
 
-type OnToggleIsFetchingType = {
-    type: typeof TOGGLE_IS_FETCHING,
-    isFetching: boolean
+export const actions = {
+    onSendMessageCreater: (newMessageBody:string) => ({
+        type: 'SN/DIALOGS/SEND-MESSAGE',
+        newMessageBody
+    } as const),
+    onToggleIsFetching: (isFetching:boolean) => (
+        {type: 'SN/DIALOGS/TOGGLE_IS_FETCHING',
+        isFetching: isFetching
+    } as const)
 }
-export const onToggleIsFetching = (isFetching:boolean):OnToggleIsFetchingType => (
-    {type: TOGGLE_IS_FETCHING,
-    isFetching: isFetching}
-)
 
-type SendMessageCreaterActionType = {
-    type: typeof SEND_MESSAGE,
-    newMessageBody: string
-}
-export const  onSendMessageCreater = (newMessageBody:string):SendMessageCreaterActionType => ({type: SEND_MESSAGE, newMessageBody});
+
 export default dialogsReducer;
