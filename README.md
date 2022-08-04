@@ -1,7 +1,9 @@
 # Getting Started with Create React App
 
-test account:<br/>
+<b>Test account:</b>
+<br/>
 login: ersainaldabaev@gmail.com
+<br/>
 pass: reactredux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
