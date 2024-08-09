@@ -10,21 +10,15 @@ export const profileAPI = {
 
     getProfile(userId: number){
         return instance.get<ProfileType>(`profile/${userId}`)
-            .then(response => {
-                return response.data
-            })
+            .then(response => response.data)
     },
     getStatus(userId: number){
         return instance.get<string>(`profile/status/${userId}`)
-        .then(response => {
-            return response.data
-        })
+        .then(response => response.data)
     },
     updateStatus(status: string){
         return instance.put<ResponseType>(`profile/status`, { status: status })
-        .then(response => {
-            return response.data
-        })
+        .then(response => response.data)
     },
     savePhoto(file: any){
         const formData = new FormData();
@@ -32,14 +26,10 @@ export const profileAPI = {
         return instance.put<ResponseType<SavePhotoResponseType>>(`profile/photo`, formData, { headers: {
             'Content-Type': 'multipart/form-data'
           }})
-        .then(response => {
-            return response.data
-        })
+        .then(response => response.data)
     },
     saveProfile(profile: ProfileType){
         return instance.put<ResponseType>(`profile`, profile)
-        .then(response => {
-            return response.data
-        })
+        .then(response => response.data)
     }
 }

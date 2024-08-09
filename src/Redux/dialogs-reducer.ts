@@ -30,6 +30,18 @@ let initialState = {
     ] as Array <MessageType>,
     isFetching: null as boolean | null
 }
+
+export const actions = {
+    onSendMessage: (newMessageBody:string) => ({
+        type: 'SN/DIALOGS/SEND-MESSAGE',
+        newMessageBody
+    } as const),
+    onToggleIsFetching: (isFetching:boolean) => (
+        {type: 'SN/DIALOGS/TOGGLE_IS_FETCHING',
+        isFetching: isFetching
+    } as const)
+}
+
 export type InitialStateType = typeof initialState;
 type ActionsType = InfernActionsTypes<typeof actions>
 
@@ -55,17 +67,6 @@ const dialogsReducer = (state = initialState, action:ActionsType):InitialStateTy
         default:
             return state;
     }
-}
-
-export const actions = {
-    onSendMessageCreater: (newMessageBody:string) => ({
-        type: 'SN/DIALOGS/SEND-MESSAGE',
-        newMessageBody
-    } as const),
-    onToggleIsFetching: (isFetching:boolean) => (
-        {type: 'SN/DIALOGS/TOGGLE_IS_FETCHING',
-        isFetching: isFetching
-    } as const)
 }
 
 

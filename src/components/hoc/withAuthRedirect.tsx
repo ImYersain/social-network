@@ -1,30 +1,26 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { AppStateType } from '../../Redux/redux-store';
 // import { Route, Routes } from "react-router-dom";
 // import Login from '../Login/Login';
 
 
-
-
-let mapStateToPropsForRedirect = (state) => ({
+let mapStateToPropsForRedirect = (state: AppStateType) => ({
     isAuth: state.auth.isAuth   
 })
 
-export const withAuthRedirect = (Component) => {
+export const withAuthRedirect = (Component: React.ComponentType) => {
 
     class RedirectComponent extends React.Component {
-        render(){        
-            if(!this.props.isAuth) {
+        render(){
+            const {isAuth, ...restProps}: any = this.props;        
+            if(!isAuth) {
                 return (
-                // <Routes>
-                //     <Route path="/" element={<Login />} />  вариант , что при обновлении не вылетает страница логин, но мы должны дольше норм пофиксить с димычом
-                // </Routes>
                 <Navigate to={'/login'} />)
             } 
-   
 
-            return <Component {...this.props} />    
+            return <Component {...restProps} />    
         }
     }
 

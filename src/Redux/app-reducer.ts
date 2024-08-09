@@ -6,13 +6,16 @@ let initialState = {
     initialized : false
 }
 
+//action creator:
+export const actions = {
+    initializedSuccess: () => ({ type: 'SN/APP/INITIALIZED_SUCCESS' } as const)
+}
+
 export type InitialStateType = typeof initialState;
 type ActionsType = InfernActionsTypes<typeof actions>
 
 
-
 const appReducer = (state = initialState, action: ActionsType): InitialStateType => {
-
     switch (action.type) {
         case 'SN/APP/INITIALIZED_SUCCESS':
             return {
@@ -25,20 +28,12 @@ const appReducer = (state = initialState, action: ActionsType): InitialStateType
 }
 
 
-//action creator:
-export const actions = {
-    initializedSuccess: () => ({ type: 'SN/APP/INITIALIZED_SUCCESS' })
-}
-
-
-
 //thunkCreator:
 export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(getAuthUserData());
     promise.then(() => {
         dispatch(actions.initializedSuccess());
-    });
-    
+    });   
 }
 
 

@@ -3,12 +3,13 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import { Routes,Route, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { initializeApp } from './Redux/app-reducer.ts';
+import { initializeApp } from './Redux/app-reducer';
 import { compose } from 'redux';
 import { withRouter } from './components/hoc/WithRouter';
 import Preloader from './assets/Preloader';
 
 import './App.css';
+import { AppStateType } from './Redux/redux-store';
 
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -18,23 +19,26 @@ const Login = React.lazy(() => import('./components/Login/Login'));
 const Music = React.lazy(() => import('./components/Music/Music'));
 const News = React.lazy(() => import('./components/News/News'));
 const Settings = React.lazy(() => import('./components/Settings/Settings'));
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+  initializeApp: () => void;
+}
 
 
 
-
-class App extends React.Component {
+class App extends React.Component<MapPropsType & DispatchPropsType> {
   
-  catchAllUnhandledErrors = (reason, promise) => {
-    alert(`error reason is ${reason}`);
-    console.error(promise);
+  catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
+    alert(`error reason is ${e.reason}`);
+    console.error(e.promise);
   }
 
   componentDidMount() {
     this.props.initializeApp();
-    window.addEventListener('error', this.catchAllUnhandledErrors);
+    window.addEventListener('error', () => this.catchAllUnhandledErrors);
   }
   componentWillUnmount(){
-    window.removeEventListener('error', this.catchAllUnhandledErrors);
+    window.removeEventListener('error', () => this.catchAllUnhandledErrors);
   }
 
   render () {
@@ -57,7 +61,7 @@ class App extends React.Component {
               <Route path='/login' element={<Login />} />
               <Route path='/*' element={
                   <div style={{'margin':'50px auto','textAlign':'center','fontSize':'30px'}}>404 Not found</div>} />
-              <Route exact path='/' element={<Navigate to='/profile' /> }/>
+              <Route path='/' element={<Navigate to='/profile' /> }/>
           </Routes>
           </Suspense>
         </div>      
@@ -67,12 +71,12 @@ class App extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized
 })
 
 
-export default compose(
+export default compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, { initializeApp })
 ) (App)

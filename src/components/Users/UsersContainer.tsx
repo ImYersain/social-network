@@ -4,12 +4,10 @@ import { AppStateType } from '../../Redux/redux-store';
 import React,{ FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { requestUsers, follow, unfollow } from '../../Redux/users-reducer';
-import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 import { getPageSize, getUserSelector, getCurrentPage, getIsFetching, getTotalUsersCount, getFollowingInProgress } from '../../Redux/users-selectors';
 import Users from './Users';
-import Preloader from '../../assets/Preloader';
 
 
 

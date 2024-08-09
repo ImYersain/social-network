@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 import s from './Navbar.module.css';
 
-
-const Navbar = (props) => {
-    let activeClass = navData => navData.isActive ? s.active : s.item;
+type PropsType = {
+    friends: Array<{ id: number, name: string, avatar: string }>
+}
+const Navbar: React.FC<PropsType> = (props) => {
+    let activeClass = (navData: any) => navData.isActive ? s.active : s.item;
 
     return (
         <nav className={s.nav}>

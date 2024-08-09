@@ -3,10 +3,7 @@ import React from 'react';
 import s from './Settings.module.css';
 
 
-
-
-
-const News = (props) => {
+const News: React.FC = (props) => {
   return (
     <div className={s.content}>
       settings

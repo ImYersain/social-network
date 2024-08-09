@@ -3,28 +3,28 @@ import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { AppStateType } from '../../Redux/redux-store';
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     messagesPage: state.messagesPage
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    sendMessage: (newMessageBody) => {
-      dispatch(actions.onSendMessageCreater(newMessageBody));
+    sendMessage: (newMessageBody: string) => {
+      dispatch(actions.onSendMessage(newMessageBody));
     },
-    toggleIsFetching: (isFetching) => {
+    toggleIsFetching: (isFetching: boolean) => {
       dispatch(actions.onToggleIsFetching(isFetching));
     }
   }
 }
 
 
-export default compose(
+export default compose<React.ComponentType>(
   connect(mapStateToProps, mapDispatchToProps),
   withAuthRedirect
 )(Dialogs)

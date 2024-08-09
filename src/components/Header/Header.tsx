@@ -5,7 +5,12 @@ import authorizedAvatar from  '../../assets/images/authorized-avatar.png';
 
 import s from './Header.module.css';
 
-const Header = (props) => {
+type PropsHeaderType = {
+    isAuth: boolean,
+    login: string | null,
+    logout: () => void,
+}
+const Header: React.FC<PropsHeaderType> = (props) => {
     let login = (<>
         <img style={{'width':'40px', 'height':'40px'}} src={loginAvatar} alt='login-avatar'></img>
         <NavLink to={'/login'}>login</NavLink>        

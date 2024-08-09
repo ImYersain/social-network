@@ -15,6 +15,19 @@ let initialState = {
     captchaUrl: null as string | null   //if null, then captcha not required
 }
 
+//action creator:
+export const actions = {
+    setAuthUserData: (userId:number | null, email:string | null, login:string | null, isAuth:boolean)=> ({ 
+        type: 'SN/AUTH/SET_USER_DATA',
+        payload: {userId, email, login, isAuth}
+    } as const),
+    getCaptchaUrlSuccess: (captchaUrl:string) => ({ 
+        type: 'SN/AUTH/SET_CAPTCHA_URL_SUCCESS',
+        captchaUrl
+    } as const )
+}
+
+
 export type InitialStateType = typeof initialState;
 type ActionsTypes = InfernActionsTypes<typeof actions>
 type ThunkType  =  BaseThunkType<ActionsTypes | FormAction>
@@ -37,22 +50,6 @@ const authReducer = (state = initialState, action:ActionsTypes):InitialStateType
                 return state;
     }
 }
-
-
-
-//action creator:
-export const actions = {
-    setAuthUserData: (userId:number | null, email:string | null, login:string | null, isAuth:boolean)=> ({  /* либо (data) */
-        type: 'SN/AUTH/SET_USER_DATA',
-        payload: {userId, email, login, isAuth}
-    } as const),
-    getCaptchaUrlSuccess: (captchaUrl:string) => ({ 
-        type: 'SN/AUTH/SET_CAPTCHA_URL_SUCCESS',
-        captchaUrl
-    } as const )
-
-}
-
  
 
 //thunkCreater'y:

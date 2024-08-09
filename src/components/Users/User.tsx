@@ -3,10 +3,16 @@ import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Users.module.css';
+import { UserType } from '../../types/types';
 
 
-
-const User = ({user, followingProgress, unfollow, follow}) => {
+type PropsUserType = {
+  user: UserType;
+  followingProgress: Array<number>;
+  follow: (userId:number) => void;
+  unfollow: (userId:number) => void;
+}
+const User: React.FC<PropsUserType> = ({user, followingProgress, unfollow, follow}) => {
   
    return <div className={styles.userWrapper}>
       <span>
@@ -33,10 +39,10 @@ const User = ({user, followingProgress, unfollow, follow}) => {
           <div className={styles.userName}>{user.name}</div>
           <div>{user.status}</div>
         </span>
-        {/* <span className={styles.userCountry}>
-          <div>{'user.location.country'}</div>
-          <div>{'user.location.city'}</div>
-        </span> */}
+        <span className={styles.userCountry}>
+          <div>{'Mock country'}</div>
+          <div>{'Mock city'}</div>
+        </span>
       </span>
   </div>
 }

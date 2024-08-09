@@ -2,9 +2,7 @@ import React from 'react';
 import s from './Music.module.css';
 
 
-
-
-const Music = (props) => {
+const Music: React.FC = (props) => {
   return (
     <div className={s.content}>
       music

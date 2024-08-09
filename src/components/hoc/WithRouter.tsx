@@ -1,9 +1,9 @@
 import React from 'react';
 import { useMatch } from 'react-router-dom';
 
-export const withRouter = (Component) => {   
+export const withRouter = (Component: React.ComponentType) => {   
 
-    const ProfileMatch = (props) => {
+    const ProfileMatch = (props: any) => {
         
     let match = useMatch("/profile/:userId/");
 	return (
