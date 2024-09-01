@@ -13,12 +13,12 @@ let initialState = {
     isFetching: true,
     followingProgress: [] as Array<number>      //array of users id's
 }
-type InitialStateType = typeof initialState;
-type ActionsTypes = InfernActionsTypes<typeof actions>
+export type UserReducerInitialStateType = typeof initialState;
+export type ActionsTypes = InfernActionsTypes<typeof actions>
 type ThunkType  =  BaseThunkType<ActionsTypes>
 
 
-const usersReducer = (state = initialState, action: ActionsTypes):InitialStateType => {
+const usersReducer = (state = initialState, action: ActionsTypes):UserReducerInitialStateType => {
 
     switch (action.type) {
         case 'SN/USERS/TOGGLE_FOLLOW':
@@ -67,7 +67,7 @@ const usersReducer = (state = initialState, action: ActionsTypes):InitialStateTy
 
 
 //action creator:
-const actions = {
+export const actions = {
     followToggle: (userId:number) => ({
         type: 'SN/USERS/TOGGLE_FOLLOW',
         userId
@@ -129,12 +129,12 @@ const _followUnfollowFlow = async (userId:number, dispatch: Dispatch<ActionsType
 
 
 export const follow = (userId:number):ThunkType => async (dispatch) => {
-    let apiMethod = usersAPI.follow(userId)
-    _followUnfollowFlow(userId, dispatch, apiMethod)
+    let apiMethod = await usersAPI.follow(userId)
+    await _followUnfollowFlow(userId, dispatch, apiMethod)
 }
 export const unfollow = (userId:number):ThunkType => async (dispatch) => {
-    let apiMethod = usersAPI.unfollow(userId)
-    _followUnfollowFlow(userId, dispatch, apiMethod)
+    let apiMethod = await usersAPI.unfollow(userId)
+    await _followUnfollowFlow(userId, dispatch, apiMethod)
 }
 
 
