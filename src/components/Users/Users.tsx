@@ -1,37 +1,43 @@
 import {UserType} from '../../types/types';
 
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import Preloader from '../../assets/Preloader';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 
 import styles from './Users.module.css';
 import {UsersSearchForm} from './UsersSearchForm';
-import {UserFilterType} from '../../Redux/users-reducer';
+import {requestUsers, UserFilterType} from '../../Redux/users-reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUserSelector, getUsersFilter } from '../../Redux/users-selectors';
 
 type PropsType = {
-  users: Array<UserType>;
-  totalUsersCount: number;
-  pageSize: number;
-  onPageChanged: (page: number) => void;
-  onFilterChanged: (value: UserFilterType) => void;
-  currentPage: number;
-  followingProgress: Array<number>;
-  isFetching: boolean;
-  follow: (userId: number) => void;
-  unfollow: (userId: number) => void;
 };
 
-const Users: FC<PropsType> = ({
-  users,
-  totalUsersCount,
-  pageSize,
-  onPageChanged,
-  currentPage,
-  followingProgress,
-  onFilterChanged,
-  ...props
-}) => {
+export const Users: FC<PropsType> = (props) => {
+  const users =  useSelector(getUserSelector);
+  const totalUsersCount = useSelector(getTotalUsersCount);
+  const pageSize = useSelector(getPageSize);
+  const currentPage = useSelector(getCurrentPage);
+  const isFetching = useSelector(getIsFetching);
+  const followingProgress = useSelector(getFollowingInProgress);
+  const filter = useSelector(getUsersFilter);
+
+  const dispatch = useDispatch();
+
+  const onPageChanged = (pageNumber: number) => {
+    dispatch(requestUsers(pageNumber, pageSize, filter));
+  };
+
+  const onFilterChanged = (filter: UserFilterType) => {
+    dispatch(requestUsers(1, pageSize, filter));
+  };
+
+  useEffect(() => {
+    dispatch(requestUsers(currentPage, pageSize, {term: '', friend: ''}));
+  }, []);
+
+
   return (
     <>
       <UsersSearchForm onFilterChanged={onFilterChanged} />
@@ -42,7 +48,7 @@ const Users: FC<PropsType> = ({
         currentPage={currentPage}
       />
       <div className={styles.wrapper}>
-        {props.isFetching ? (
+        {isFetching ? (
           <Preloader style={{width: '100%', position: 'absolute', left: '0'}} />
         ) : (
           users.map((user) => (
@@ -50,8 +56,6 @@ const Users: FC<PropsType> = ({
               key={user.id}
               user={user}
               followingProgress={followingProgress}
-              follow={props.follow}
-              unfollow={props.unfollow}
             />
           ))
         )}
@@ -60,4 +64,3 @@ const Users: FC<PropsType> = ({
   );
 };
 
-export default Users;

@@ -13,9 +13,9 @@ import { AppStateType } from './Redux/redux-store';
 
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const UsersPage = React.lazy(() => import('./components/Users/UsersPage'));
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const Login = React.lazy(() => import('./components/Login/Login'));
+const LoginPage = React.lazy(() => import('./components/Login/LoginPage'));
 const Music = React.lazy(() => import('./components/Music/Music'));
 const News = React.lazy(() => import('./components/News/News'));
 const Settings = React.lazy(() => import('./components/Settings/Settings'));
@@ -53,12 +53,12 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
           <Suspense fallback={<Preloader />}>
           <Routes>
               <Route path='/profile/*' element={<ProfileContainer />}/>
-              <Route path='/users' element={<UsersContainer />} />
+              <Route path='/users' element={<UsersPage />} />
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/news' element={<News />} />
               <Route path='/music' element={<Music />} />
               <Route path='/settings' element={<Settings />} />
-              <Route path='/login' element={<Login />} />
+              <Route path='/login' element={<LoginPage />} />
               <Route path='/*' element={
                   <div style={{'margin':'50px auto','textAlign':'center','fontSize':'30px'}}>404 Not found</div>} />
               <Route path='/' element={<Navigate to='/profile' /> }/>

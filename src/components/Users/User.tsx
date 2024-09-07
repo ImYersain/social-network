@@ -4,15 +4,23 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Users.module.css';
 import { UserType } from '../../types/types';
+import { useDispatch } from 'react-redux';
+import { follow, unfollow } from '../../Redux/users-reducer';
 
 
 type PropsUserType = {
   user: UserType;
   followingProgress: Array<number>;
-  follow: (userId:number) => void;
-  unfollow: (userId:number) => void;
 }
-const User: React.FC<PropsUserType> = ({user, followingProgress, unfollow, follow}) => {
+const User: React.FC<PropsUserType> = ({user, followingProgress}) => {
+  const dispatch = useDispatch();
+  const onFollow = (userId: number) => {
+    dispatch(follow(userId))
+  }
+
+  const onUnfollow = (userId: number) => {
+    dispatch(unfollow(userId));
+  }
   
    return <div className={styles.userWrapper}>
       <span>
@@ -24,10 +32,10 @@ const User: React.FC<PropsUserType> = ({user, followingProgress, unfollow, follo
         <div>
           <button className={styles.followBtn} disabled={followingProgress.some(id => id === user.id )} onClick={() => {
             if (user.followed === true) {
-              unfollow(user.id)
+              onUnfollow(user.id)
             }
             else {
-              follow(user.id)
+              onFollow(user.id)
             }
           }}>
             {user.followed ? 'Unfollow' : 'Follow'}

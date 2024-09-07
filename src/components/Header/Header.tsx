@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useEffect } from 'react'; 
 import {NavLink} from 'react-router-dom'
 import loginAvatar from '../../assets/images/login-avatar.png';
 import authorizedAvatar from  '../../assets/images/authorized-avatar.png';
@@ -11,6 +11,7 @@ type PropsHeaderType = {
     logout: () => void,
 }
 const Header: React.FC<PropsHeaderType> = (props) => {
+    //fixme after logout page do not render
     let login = (<>
         <img style={{'width':'40px', 'height':'40px'}} src={loginAvatar} alt='login-avatar'></img>
         <NavLink to={'/login'}>login</NavLink>        
