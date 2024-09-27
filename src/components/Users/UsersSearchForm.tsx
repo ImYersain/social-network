@@ -1,21 +1,15 @@
 import {Field, Formik, FormikHelpers} from 'formik';
 import React from 'react';
 import {UserFilterType} from '../../Redux/users-reducer';
+import {useSelector} from 'react-redux';
+import {getUsersFilter} from '../../Redux/users-selectors';
 
 type UsersSearchFormPropsType = {
   onFilterChanged: (value: UserFilterType) => void;
 };
 
 export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(({onFilterChanged}) => {
-  const usersSearchFormValidate = (values: UserFilterType) => {
-    const errors: any = {};
-    if (!values.term) {
-      errors.term = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.term)) {
-      errors.term = 'Invalid email address';
-    }
-    return errors;
-  };
+  const filter = useSelector(getUsersFilter);
 
   const submit = (values: UserFilterType, {setSubmitting}: FormikHelpers<UserFilterType>) => {
     onFilterChanged(values);
@@ -23,8 +17,8 @@ export const UsersSearchForm: React.FC<UsersSearchFormPropsType> = React.memo(({
   };
 
   return (
-    <div>
-      <Formik initialValues={{term: '', friend: ''}} onSubmit={submit}>
+    <div style={{display: 'flex', justifyContent: 'center', height: '30px'}}>
+      <Formik enableReinitialize initialValues={{term: filter.term, friend: filter.friend}} onSubmit={submit}>
         {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
           <form onSubmit={handleSubmit}>
             <input type="text" name="term" onChange={handleChange} onBlur={handleBlur} value={values.term} />

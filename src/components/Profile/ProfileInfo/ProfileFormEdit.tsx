@@ -5,6 +5,7 @@ import {Input, Textarea} from '../../common/FormsControls/FormsControls';
 import styles from './ProfileInfo.module.css';
 import {ProfileType} from '../../../types/types';
 import Preloader from '../../../assets/Preloader';
+import {Button} from 'antd';
 
 type ProfileFormEditProps = {
   profile: ProfileType | null;
@@ -56,7 +57,7 @@ const PofileFormEdit: FC<ProfileFormEditProps> = ({profile, handleSubmit, error}
         </div>
       </div>
       <div>
-        <button>Save</button>
+        <Button>Save</Button>
       </div>
       {error && <div className={styles.formSummaryError}>{error}</div>}
     </form>

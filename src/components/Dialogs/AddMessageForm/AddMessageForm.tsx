@@ -3,6 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Textarea} from '../../common/FormsControls/FormsControls';
 import {requiredField, maxLengthCreater} from '../../utils/validators/validators';
 import {NewMessageFormType} from '../Dialogs';
+import {Button} from 'antd';
 
 const maxLength100 = maxLengthCreater(100);
 
@@ -23,7 +24,7 @@ const AddMessageForm: FC<InjectedFormProps<NewMessageFormValuesKeysType, PropsTy
         />
       </div>
       <div>
-        <button>Send</button>
+        <Button>Send</Button>
       </div>
     </form>
   );

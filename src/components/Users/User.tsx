@@ -1,20 +1,29 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.png';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import styles from './Users.module.css';
-import { UserType } from '../../types/types';
-
+import {UserType} from '../../types/types';
+import {useDispatch} from 'react-redux';
+import {follow, unfollow} from '../../Redux/users-reducer';
+import {Button} from 'antd';
 
 type PropsUserType = {
   user: UserType;
   followingProgress: Array<number>;
-  follow: (userId:number) => void;
-  unfollow: (userId:number) => void;
-}
-const User: React.FC<PropsUserType> = ({user, followingProgress, unfollow, follow}) => {
-  
-   return <div className={styles.userWrapper}>
+};
+const User: React.FC<PropsUserType> = ({user, followingProgress}) => {
+  const dispatch = useDispatch();
+  const onFollow = (userId: number) => {
+    dispatch(follow(userId));
+  };
+
+  const onUnfollow = (userId: number) => {
+    dispatch(unfollow(userId));
+  };
+
+  return (
+    <div className={styles.userWrapper}>
       <span>
         <div>
           <NavLink to={'/profile/' + user.id}>
@@ -22,16 +31,19 @@ const User: React.FC<PropsUserType> = ({user, followingProgress, unfollow, follo
           </NavLink>
         </div>
         <div>
-          <button className={styles.followBtn} disabled={followingProgress.some(id => id === user.id )} onClick={() => {
-            if (user.followed === true) {
-              unfollow(user.id)
-            }
-            else {
-              follow(user.id)
-            }
-          }}>
+          <Button
+            className={styles.followBtn}
+            disabled={followingProgress.some((id) => id === user.id)}
+            onClick={() => {
+              if (user.followed === true) {
+                onUnfollow(user.id);
+              } else {
+                onFollow(user.id);
+              }
+            }}
+          >
             {user.followed ? 'Unfollow' : 'Follow'}
-          </button>
+          </Button>
         </div>
       </span>
       <span className={styles.userDescription}>
@@ -44,8 +56,8 @@ const User: React.FC<PropsUserType> = ({user, followingProgress, unfollow, follo
           <div>{'Mock city'}</div>
         </span>
       </span>
-  </div>
-}
-
+    </div>
+  );
+};
 
 export default User;

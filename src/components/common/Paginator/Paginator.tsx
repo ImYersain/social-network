@@ -1,21 +1,20 @@
-import React, { FC,useState } from 'react';
+import React, {FC, useState} from 'react';
 
-import cn from "classnames";
+import cn from 'classnames';
 import styles from './Paginator.module.css';
-
+import {Button} from 'antd';
 
 type PropsType = {
-  totalItemsCount: number,
-  pageSize: number,
-  onPageChanged: (page: number) => void,
-  currentPage: number,
-  portionSize?: number
-}
+  totalItemsCount: number;
+  pageSize: number;
+  onPageChanged: (page: number) => void;
+  currentPage: number;
+  portionSize?: number;
+};
 
-const Paginator:FC<PropsType> = ({ totalItemsCount, pageSize, onPageChanged, currentPage, portionSize = 10 }) => {
-
+const Paginator: FC<PropsType> = ({totalItemsCount, pageSize, onPageChanged, currentPage, portionSize = 10}) => {
   let pagesCount = Math.ceil(totalItemsCount / pageSize);
-  let pages:Array<number> = [];
+  let pages: Array<number> = [];
 
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
@@ -26,26 +25,46 @@ const Paginator:FC<PropsType> = ({ totalItemsCount, pageSize, onPageChanged, cur
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   let rightPortionPageNumber = portionNumber * portionSize;
 
-
-  return <div className={styles.pages}>
-    {portionNumber > 1 &&
-      <button className={styles.btn} onClick={() => { setPortionNumber(portionNumber - 1) }}>prev</button>
-    }
-    {pages
-      .filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
-      .map(page => {
-        return <span key={page} onClick={(e) => { onPageChanged(page) }}
-          className={cn( styles.pageNumber, {[styles.selectedPage]: currentPage === page} )}
-        // className={currentPage === page ? styles.selectedPage : null}
+  return (
+    <div className={styles.pages}>
+      {portionNumber > 1 && (
+        <Button
+          className={styles.btn}
+          onClick={() => {
+            setPortionNumber(portionNumber - 1);
+          }}
         >
-          {page}
-        </span>
-      })}
-    {portionCount > portionNumber &&
-      <button className={styles.btn} onClick={() => { setPortionNumber(portionNumber + 1) }}>next</button>
-    }
-  </div>
-}
-
+          prev
+        </Button>
+      )}
+      {pages
+        .filter((page) => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
+        .map((page) => {
+          return (
+            <span
+              key={page}
+              onClick={(e) => {
+                onPageChanged(page);
+              }}
+              className={cn(styles.pageNumber, {[styles.selectedPage]: currentPage === page})}
+              // className={currentPage === page ? styles.selectedPage : null}
+            >
+              {page}
+            </span>
+          );
+        })}
+      {portionCount > portionNumber && (
+        <Button
+          className={styles.btn}
+          onClick={() => {
+            setPortionNumber(portionNumber + 1);
+          }}
+        >
+          next
+        </Button>
+      )}
+    </div>
+  );
+};
 
 export default Paginator;
