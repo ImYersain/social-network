@@ -6,6 +6,7 @@ import {Textarea} from '../../common/FormsControls/FormsControls';
 
 import s from './MyPosts.module.css';
 import {MapStateToPropsMyPostsType} from './MyPostsContainer';
+import {Button} from 'antd';
 
 let maxLength30 = maxLengthCreater(30);
 
@@ -49,7 +50,7 @@ const AddPostForm = ({handleSubmit}: {handleSubmit: () => void}) => {
         />
       </div>
       <div>
-        <button> Add post </button>
+        <Button> Add post </Button>
       </div>
     </form>
   );

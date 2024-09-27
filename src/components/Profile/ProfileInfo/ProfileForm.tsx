@@ -3,6 +3,7 @@ import React, {FC} from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileType} from '../../../types/types';
 import Preloader from '../../../assets/Preloader';
+import {Button} from 'antd';
 
 type ProfileFormPropsType = {
   profile: ProfileType | null;
@@ -55,7 +56,7 @@ const ProfileForm: FC<ProfileFormPropsType> = ({profile, isOwner, goToEditMode})
       </div>
       {isOwner && (
         <div>
-          <button onClick={goToEditMode}>Edit</button>
+          <Button onClick={goToEditMode}>Edit</Button>
         </div>
       )}
     </div>

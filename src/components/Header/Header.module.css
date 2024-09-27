@@ -1,12 +1,12 @@
 .header {
-    grid-area: h;
-    background-color: #13CE66;
-    border-radius: 5px;
-  }
+  grid-area: h;
+  background-color: #13ce66;
+  border-radius: 5px;
+}
 .header img {
   width: 100px;
 }
-.loginBlock{
+.loginBlock {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,7 +14,7 @@
   margin: 8px 10px;
   cursor: pointer;
 }
-.loginBlock a{
+.loginBlock a {
   color: black;
   cursor: pointer;
   text-decoration: none;
