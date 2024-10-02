@@ -4,10 +4,11 @@ import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 import usersReducer from './users-reducer';
 import authReducer from './auth-reducer';
-import thunkMiddleware from 'redux-thunk';
+import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 import appReducer from './app-reducer';
 import { reducer as formReducer } from 'redux-form';
 import { ThunkAction } from 'redux-thunk';
+import chatReducer from './chat-reducer';
 
 
 
@@ -19,6 +20,7 @@ let rootReducer = combineReducers({
     auth: authReducer,
     app: appReducer,
     form: formReducer,
+    chat: chatReducer,
 })
 
 type RootReducerType = typeof rootReducer
