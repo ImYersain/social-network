@@ -1,4 +1,4 @@
-import React, {Children, Suspense} from 'react';
+import React, {Suspense} from 'react';
 import HeaderContainer from './components/Header/HeaderContainer';
 import {Routes, Route, Navigate, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -23,6 +23,8 @@ const LoginPage = React.lazy(() => import('./components/Login/LoginPage'));
 const Music = React.lazy(() => import('./components/Music/Music'));
 const News = React.lazy(() => import('./components/News/News'));
 const Settings = React.lazy(() => import('./components/Settings/Settings'));
+const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'));
+
 type MapPropsType = ReturnType<typeof mapStateToProps>;
 type DispatchPropsType = {
   initializeApp: () => void;
@@ -75,6 +77,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                     <Route path="/music" element={<Music />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/chat" element={<ChatPage />} />
                     <Route
                       path="/*"
                       element={
@@ -114,9 +117,10 @@ function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 const items: MenuItem[] = [
   getItem(<Link to="/profile">Profile</Link>, '1', <UserOutlined />),
   getItem(<Link to="/users">Users</Link>, '2', <TeamOutlined />),
-  getItem(<Link to="/dialogs">Messages</Link>, '3', <DesktopOutlined />),
-  getItem(<Link to="/music">Music</Link>, '4', <FileOutlined />),
-  getItem(<Link to="/settings">Settings</Link>, '5', <DesktopOutlined />),
+  getItem(<Link to="/chat">Chat</Link>, '3', <TeamOutlined />),
+  getItem(<Link to="/dialogs">Messages</Link>, '4', <DesktopOutlined />),
+  getItem(<Link to="/music">Music</Link>, '5', <FileOutlined />),
+  getItem(<Link to="/settings">Settings</Link>, '6', <DesktopOutlined />),
   getItem('My web', 'sub1', <UserOutlined />, [
     getItem(<Link to="/profile">Profile</Link>, 'Profile'),
     getItem(<Link to="/users">Users</Link>, 'Users'),
